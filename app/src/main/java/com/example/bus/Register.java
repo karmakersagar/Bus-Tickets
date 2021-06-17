@@ -134,7 +134,7 @@ public class Register extends AppCompatActivity {
                         });
                         String userId = firebaseUser.getUid();
                         Users users = new Users(firstName,lastName,emailId,password,phoneNo);
-                        FirebaseDatabase.getInstance().getReference("users").child(userId).setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        FirebaseDatabase.getInstance("https://buss-886c2-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("users").child(userId).setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull @NotNull Task<Void> task) {
                                 if(task.isSuccessful()){
