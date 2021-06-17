@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">bus</string>
+    <string name="Open">Open</string>
+    <string name="Close">Close</string>
+</resources>
