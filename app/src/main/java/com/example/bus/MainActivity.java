@@ -4,19 +4,20 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bus.fragments.HomeFragment;
+import com.example.bus.fragments.Profile;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -24,6 +25,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private NavigationView navigationView;
@@ -35,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer);
         navigationView = findViewById(R.id.NavigationView);
         firebaseAuth = FirebaseAuth.getInstance();
@@ -45,16 +49,16 @@ public class MainActivity extends AppCompatActivity {
         actionBarDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
+        showFragments(new HomeFragment());
+        drawerLayout.closeDrawer(GravityCompat.START);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.profile:
                         Toast.makeText(MainActivity.this, "Profile Menu is Clicked !!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
+                        showFragments(new Profile());
+                        drawerLayout.closeDrawer(GravityCompat.START);
                         return true;
 
                     case R.id.notification:
@@ -96,9 +100,18 @@ public class MainActivity extends AppCompatActivity {
                         logOutBuilder.show();
                         return true;
                 }
+
                 return true;
             }
+
         });
+    }
+
+    public void showFragments(Fragment fragment){
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout,fragment);
+        fragmentTransaction.commit();
+
     }
 
     @Override
@@ -107,8 +120,16 @@ public class MainActivity extends AppCompatActivity {
         if(actionBarDrawerToggle.onOptionsItemSelected(item)){
             return  true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
-
+    @Override
+    public void onBackPressed() {
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }else {
+            super.onBackPressed();
+        }
+    }
 }

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.HomeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/fromTxt"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="150dp"
+        android:text="From"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fromEntercity"
+        android:layout_below="@+id/fromTxt"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="20dp"
+        android:hint="Enter City"
+        android:textColorHint="@color/black" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toTxt"
+        android:layout_below="@+id/fromEntercity"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="145dp"
+        android:text="To"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/toEnterCity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toTxt"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:hint="Enter City"
+        android:textColorHint="@color/black"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/dateText"
+        android:layout_below="@+id/toEnterCity"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="150dp"
+        android:text="Date of Journey"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/pickDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dateText"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="120dp"
+        android:hint="Pick a Date"
+        android:textColorHint="@color/black" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="30dp"
+        android:layout_height="28dp"
+        android:id="@+id/circleImage"
+        android:layout_marginLeft="-80dp"
+        android:layout_marginTop="360dp"
+        android:layout_toRightOf="@+id/pickDate"
+        android:src="@drawable/calendericon" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchBusButton"
+        android:layout_below="@+id/pickDate"
+        android:layout_marginTop="54dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="80dp"
+        android:text="Search Buses"
+        />
+
+
+</RelativeLayout>

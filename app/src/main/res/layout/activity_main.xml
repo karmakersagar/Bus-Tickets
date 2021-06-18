@@ -9,13 +9,20 @@
         tools:context=".MainActivity"
         android:background="@drawable/background"
         tools:openDrawer="start"
-        android:fitsSystemWindows="true"
-        android:id="@+id/drawer">
+        android:id="@+id/drawer"
+    >
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/frameLayout"/>
 
-        <com.google.android.material.navigation.NavigationView
+
+
+    <com.google.android.material.navigation.NavigationView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/NavigationView"
+            android:fitsSystemWindows="true"
             android:background="#fff"
             app:menu="@menu/menu"
             app:headerLayout="@layout/header"
