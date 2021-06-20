@@ -116,7 +116,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:paddingLeft="25dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -129,7 +129,7 @@
                 android:text="Edit"
                 android:drawableLeft="@drawable/ic_baseline_edit_24"
                 android:layout_marginLeft="230dp"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginTop="10dp"/>
         </LinearLayout>
 
 
