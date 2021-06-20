@@ -60,7 +60,7 @@
                 android:id="@+id/emailImage"
                 android:src="@drawable/ic_baseline_email_24"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:id="@+id/eamilTxt"

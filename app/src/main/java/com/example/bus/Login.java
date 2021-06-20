@@ -1,10 +1,13 @@
 package com.example.bus;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,11 +25,14 @@ import org.jetbrains.annotations.NotNull;
 
 public class Login extends AppCompatActivity {
 
-    private EditText emailLog, passwordLog;
+    private EditText emailLog, passwordLog,resetEmail;
     private TextView registerView , forgetPasswordbtn;
     private FirebaseAuth firebaseAuth;
 
+
     private Button loginButtn;
+    private AlertDialog.Builder forgetPassAlert;
+    private LayoutInflater inflater;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +43,12 @@ public class Login extends AppCompatActivity {
         registerView =  findViewById(R.id.createAccTxt);
         forgetPasswordbtn = findViewById(R.id.fogetPassword);
         firebaseAuth = FirebaseAuth.getInstance();
+        forgetPassAlert = new AlertDialog.Builder(Login.this);
+        inflater = this.getLayoutInflater();
 
         loginButtn = findViewById(R.id.logInButton);
+
+
 
         registerView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +78,7 @@ public class Login extends AppCompatActivity {
                     public void onSuccess(AuthResult authResult) {
                         if(firebaseAuth.getCurrentUser().isEmailVerified()){
                             Toast.makeText(Login.this, "Log In successfull ", Toast.LENGTH_SHORT).show();
-                            Intent ig = new Intent(getApplicationContext(),Register.class);
+                            Intent ig = new Intent(getApplicationContext(),MainActivity.class);
                             //ig.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(ig);
                             finish();
@@ -86,6 +96,47 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        forgetPasswordbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                View view1  = inflater.inflate(R.layout.reset_pass,null);
+                forgetPassAlert.setTitle("Reset Forget Password ?").setMessage("Enter your email to get reset password link");
+                forgetPassAlert.setPositiveButton("Reset", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        resetEmail = view1.findViewById(R.id.reset_passwordEditTxt);
+                        String reEmail = resetEmail.getText().toString();
+                        if(reEmail.isEmpty()){
+                            resetEmail.setError("Email is Required !");
+                            resetEmail.requestFocus();
+                            return;
+                        }
+
+                        firebaseAuth.sendPasswordResetEmail(reEmail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Toast.makeText(Login.this, "Reset Password Email is send", Toast.LENGTH_SHORT).show();
+
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull @NotNull Exception e) {
+                                Toast.makeText(Login.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                    }
+                });
+                forgetPassAlert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+                forgetPassAlert.setView(view1);
+                forgetPassAlert.show();
+            }
+        });
 
     }
 
