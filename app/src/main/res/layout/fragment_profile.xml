@@ -21,6 +21,7 @@
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/mainImage"
                 android:layout_marginTop="20dp"
                 android:src="@drawable/tom"
                 />
@@ -29,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Prodipta Sen Amartya"
+                android:id="@+id/fullText"
                 android:textAlignment="center"
                 android:textColor="#fff"
                 android:textSize="20sp"
@@ -56,12 +57,13 @@
             <ImageView
                 android:layout_width="36dp"
                 android:layout_height="36dp"
+                android:id="@+id/emailImage"
                 android:src="@drawable/ic_baseline_email_24"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="prodipta0109@gmail.com"
+                android:id="@+id/eamilTxt"
                 android:textAlignment="center"
                 android:layout_marginLeft="20dp"
                 android:textSize="20dp"/>
@@ -77,12 +79,13 @@
             <ImageView
                 android:layout_width="36dp"
                 android:layout_height="36dp"
+                android:id="@+id/phoneImage"
                 android:src="@drawable/ic_baseline_local_phone_24"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="01517006253"
+                android:id="@+id/phoneTxt"
                 android:textAlignment="center"
                 android:layout_marginLeft="20dp"
                 android:textSize="20dp" />
@@ -98,12 +101,13 @@
             <ImageView
                 android:layout_width="36dp"
                 android:layout_height="36dp"
+                android:id="@+id/paswordImage"
                 android:src="@drawable/ic_baseline_password_24"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="111222"
+                android:id="@+id/passwordTxt"
                 android:textAlignment="center"
                 android:layout_marginLeft="20dp"
                 android:textSize="20dp"
@@ -121,6 +125,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/editButton"
                 android:text="Edit"
                 android:drawableLeft="@drawable/ic_baseline_edit_24"
                 android:layout_marginLeft="230dp"

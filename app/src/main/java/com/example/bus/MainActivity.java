@@ -55,6 +55,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
                 switch (item.getItemId()){
+                    case R.id.home :
+                        Toast.makeText(MainActivity.this, "Home Menu is Clicked !!", Toast.LENGTH_SHORT).show();
+                        showFragments(new HomeFragment());
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        return true;
                     case R.id.profile:
                         Toast.makeText(MainActivity.this, "Profile Menu is Clicked !!", Toast.LENGTH_SHORT).show();
                         showFragments(new Profile());
