@@ -3,110 +3,91 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/fromTxt"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="150dp"
-        android:text="From"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:hint="From : "
+            android:layout_marginTop="10dp"
+            app:startIconDrawable="@xml/ic_place"
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/fromEntercity"
-        android:layout_below="@+id/fromTxt"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="20dp"
-        android:hint="Enter City"
-        android:textColorHint="@color/black" />
+            >
+            <AutoCompleteTextView
+                android:id="@+id/from_auto_completeTextViewId"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="From"
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/toTxt"
-        android:layout_below="@+id/fromEntercity"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="145dp"
-        android:text="To"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
+                />
 
-    <EditText
-        android:id="@+id/toEnterCity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toTxt"
-        android:layout_marginTop="24dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:hint="Enter City"
-        android:textColorHint="@color/black"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/dateText"
-        android:layout_below="@+id/toEnterCity"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="150dp"
-        android:text="Date of Journey"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/pickDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/dateText"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="120dp"
-        android:hint="Pick a Date"
-        android:textColorHint="@color/black" />
+        <com.google.android.material.textfield.TextInputLayout
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="30dp"
-        android:layout_height="28dp"
-        android:id="@+id/circleImage"
-        android:layout_marginLeft="-80dp"
-        android:layout_marginTop="360dp"
-        android:layout_toRightOf="@+id/pickDate"
-        android:src="@drawable/calendericon" />
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:startIconDrawable="@xml/ic_place"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:hint="To : "
+            android:layout_marginTop="10dp"
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/searchBusButton"
-        android:layout_below="@+id/pickDate"
-        android:layout_marginTop="54dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="80dp"
-        android:text="Search Buses"
-        />
+            >
+            <AutoCompleteTextView
+                android:id="@+id/to_auto_completeTextViewId"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="To"
+
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:hint="Journey Date : "
+            android:layout_marginTop="20dp"
+            android:id="@+id/textInputLayoutId"
+
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/journeydate_editTextViewId"
+                android:fontFamily="monospace"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search Buses"
+            android:layout_margin="20dp"
+            android:id="@+id/search_busesId"
+            />
+    </LinearLayout>
 
 
 </RelativeLayout>

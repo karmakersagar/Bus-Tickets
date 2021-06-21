@@ -11,6 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Bus">
+        <activity android:name=".Buslist"></activity>
+
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/ic_place" />
+
         <activity android:name=".SplassActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,10 +27,8 @@
         <activity android:name=".Notifications" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".Register" />
-        <activity android:name=".Login">
-        </activity>
-        <activity android:name=".MainActivity">
-        </activity>
+        <activity android:name=".Login" />
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

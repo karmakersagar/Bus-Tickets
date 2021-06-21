@@ -29,16 +29,18 @@
 
     <TextView
         android:id="@+id/textView2"
+        android:maxLines="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/imageView2"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="140dp"
+        android:layout_marginStart="120dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="120dp"
-        android:text="BookYourRide"
+        android:text="Book Your Ride"
         android:textColor="@color/black"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:autoSizeTextType="uniform"/>
 </RelativeLayout>

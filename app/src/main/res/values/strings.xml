@@ -4,4 +4,57 @@
     <string name="Close">Close</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="bus_name">
+        <item>Srabon Travel</item>
+        <item>Bashanto Travel</item>
+        <item>Boishaki Travel</item>
+        <item>Falguni Travel</item>
+        <item>Choitali Travel</item>
+        <item>Hanif Travel</item>
+    </string-array>
+
+    <string-array name="bus_number">
+        <item>BHE9870</item>
+        <item>XHA08W8</item>
+        <item>AZR8686</item>
+        <item>KLM1245</item>
+        <item>LPW4352</item>
+        <item>DUU3939</item>
+    </string-array>
+
+    <string-array name="bus_codition">
+        <item>A/C Sleepers</item>
+        <item>A/C Non_Sleepers</item>
+        <item>Non_A/C Non_Sleepers</item>
+        <item>Non_A/C Sleepers</item>
+        <item>A/C Non_Sleepers</item>
+        <item>Non_A/C Non_Sleepers</item>
+    </string-array>
+
+    <string-array name="from">
+        <item>VC Chattor</item>
+        <item>Karjon Hall</item>
+        <item>Shahid Minar</item>
+        <item>Mokarram Vaban</item>
+        <item>Sahidullah Hall</item>
+        <item>TSC</item>
+    </string-array>
+
+    <string-array name="to">
+        <item>Mirpur</item>
+        <item>Gulistan</item>
+        <item>Farmgate</item>
+        <item>Khilgaon</item>
+        <item>Malibagh</item>
+        <item>Hatirjheel</item>
+    </string-array>
+
+    <string-array name="journey_date">
+        <item>01-01-2021</item>
+        <item>05-06-2021</item>
+        <item>04-06-2021</item>
+        <item>03-02-2021</item>
+        <item>04-04-2021</item>
+        <item>04-08-2021</item>
+    </string-array>
 </resources>
