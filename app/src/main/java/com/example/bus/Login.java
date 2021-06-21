@@ -20,6 +20,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -28,7 +30,7 @@ public class Login extends AppCompatActivity {
     private EditText emailLog, passwordLog,resetEmail;
     private TextView registerView , forgetPasswordbtn;
     private FirebaseAuth firebaseAuth;
-
+    private FirebaseUser firebaseUser;
 
     private Button loginButtn;
     private AlertDialog.Builder forgetPassAlert;
@@ -79,6 +81,7 @@ public class Login extends AppCompatActivity {
                         if(firebaseAuth.getCurrentUser().isEmailVerified()){
                             Toast.makeText(Login.this, "Log In successfull ", Toast.LENGTH_SHORT).show();
                             Intent ig = new Intent(getApplicationContext(),MainActivity.class);
+                            ig.putExtra("Password",logInPassword);
                             //ig.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(ig);
                             finish();

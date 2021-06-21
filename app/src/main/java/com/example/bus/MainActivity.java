@@ -20,6 +20,8 @@ import com.example.bus.fragments.HomeFragment;
 import com.example.bus.fragments.Profile;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private AlertDialog.Builder logOutBuilder;
     private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
 
 
     @Override
@@ -48,6 +51,14 @@ public class MainActivity extends AppCompatActivity {
 
         actionBarDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Intent iin = getIntent();
+        Bundle data = iin.getExtras();
+        if(data!=null){
+            String password = (String) data.get("Password");
+            firebaseUser = firebaseAuth.getCurrentUser();
+            String userId = firebaseUser.getUid();
+            FirebaseDatabase.getInstance("https://buss-886c2-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("users").child(userId).child("passWord").setValue(password);
+        }
 
         showFragments(new HomeFragment());
         drawerLayout.closeDrawer(GravityCompat.START);
@@ -115,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
     public void showFragments(Fragment fragment){
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frameLayout,fragment);
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 
     }

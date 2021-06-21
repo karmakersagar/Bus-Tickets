@@ -35,7 +35,7 @@ import static android.content.ContentValues.TAG;
  * Use the {@link Profile#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Profile extends Fragment {
+public class Profile extends Fragment  {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -73,6 +73,7 @@ public class Profile extends Fragment {
        private DatabaseReference databaseReference;
        private FirebaseUser firebaseUser;
 
+       String fName,lName,mail,pass,phn;
 
 
     public static Profile newInstance(String param1, String param2) {
@@ -120,6 +121,9 @@ public class Profile extends Fragment {
                 textEmail.setText(userProfile.getEmailId());
                 textPhone.setText(userProfile.getPhoneNo());
                 passText.setText(userProfile.getPassWord());
+                fName = userProfile.getFirstName();
+                lName = userProfile.getLastName();
+
             }
 
             @Override
@@ -130,7 +134,29 @@ public class Profile extends Fragment {
 
             }
         });
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                mail = textEmail.getText().toString().trim();
+
+            Bundle dataBundle = new Bundle();
+            dataBundle.putString("firstName",fName);
+            dataBundle.putString("lastName",lName);
+            dataBundle.putString("mail",mail);
+            dataBundle.putString("phone",textPhone.getText().toString());
+            dataBundle.putString("password",passText.getText().toString());
+            Update_Profile update_profile = new Update_Profile();
+            update_profile.setArguments(dataBundle);
+            getFragmentManager().beginTransaction().replace(R.id.frameLayout, update_profile).addToBackStack(null).commit();
+                }
+
+        });
+
+
 
         return view;
     }
+
+
 }
