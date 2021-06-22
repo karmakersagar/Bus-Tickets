@@ -32,21 +32,137 @@
     </string-array>
 
     <string-array name="from">
-        <item>VC Chattor</item>
-        <item>Karjon Hall</item>
-        <item>Shahid Minar</item>
-        <item>Mokarram Vaban</item>
-        <item>Sahidullah Hall</item>
-        <item>TSC</item>
+        <item> Barguna</item>
+        <item> Bhola</item>
+        <item> Jhalokati</item>
+        <item> Patuakhali</item>
+        <item> Pirojpur</item>
+        <item> Bandarban</item>
+        <item> Brahmanbaria</item>
+        <item> Chandpur</item>
+        <item> Chattogram</item>
+        <item> Comilla</item>
+        <item> Feni</item>
+        <item> Khagrachhari</item>
+        <item> Lakshmipur</item>
+        <item> Noakhali</item>
+        <item> Rangamati</item>
+        <item> Dhaka</item>
+        <item> Faridpur</item>
+        <item> Gazipur</item>
+        <item> Gopalganj</item>
+        <item> Kishoreganj</item>
+        <item> Madaripur</item>
+        <item> Manikganj </item>
+        <item> Munshiganj</item>
+        <item> Narayanganj</item>
+        <item> Narsingdi</item>
+        <item> Rajbari </item>
+        <item> Shariatpur </item>
+        <item> Tangail</item>
+        <item> Bagerhat</item>
+        <item> Chuadanga</item>
+        <item> Jessore</item>
+        <item> Jhenaidah</item>
+        <item> Khulna</item>
+        <item> Kushtia</item>
+        <item> Magura</item>
+        <item> Meherpur</item>
+        <item> Narail</item>
+        <item> Satkhira</item>
+        <item> Jamalpur</item>
+        <item> Mymensingh</item>
+        <item> Netrokona</item>
+        <item> Sherpur</item>
+        <item> Bogura</item>
+        <item> Joypurhat</item>
+        <item> Naogaon</item>
+        <item> Natore</item>
+        <item> Chapainawabganj</item>
+        <item> Pabna</item>
+        <item> Rajshahi</item>
+        <item> Sirajganj</item>
+        <item> Dinajpur</item>
+        <item> Gaibandha</item>
+        <item> Kurigram</item>
+        <item> Lalmonirhat</item>
+        <item> Nilphamari</item>
+        <item> Panchagarh</item>
+        <item> Rangpur</item>
+        <item> Thakurgaon</item>
+        <item> Habiganj</item>
+        <item> Moulvibazar</item>
+        <item> Sunamganj</item>
+        <item> Sylhet</item>
+        <item> Cox\'s Bazar</item>
+
     </string-array>
 
     <string-array name="to">
-        <item>Mirpur</item>
-        <item>Gulistan</item>
-        <item>Farmgate</item>
-        <item>Khilgaon</item>
-        <item>Malibagh</item>
-        <item>Hatirjheel</item>
+        <item> Barguna</item>
+        <item> Bhola</item>
+        <item> Jhalokati</item>
+        <item> Patuakhali</item>
+        <item> Pirojpur</item>
+        <item> Bandarban</item>
+        <item> Brahmanbaria</item>
+        <item> Chandpur</item>
+        <item> Chattogram</item>
+        <item> Comilla</item>
+        <item> Feni</item>
+        <item> Khagrachhari</item>
+        <item> Lakshmipur</item>
+        <item> Noakhali</item>
+        <item> Rangamati</item>
+        <item> Dhaka</item>
+        <item> Faridpur</item>
+        <item> Gazipur</item>
+        <item> Gopalganj</item>
+        <item> Kishoreganj</item>
+        <item> Madaripur</item>
+        <item> Manikganj </item>
+        <item> Munshiganj</item>
+        <item> Narayanganj</item>
+        <item> Narsingdi</item>
+        <item> Rajbari </item>
+        <item> Shariatpur </item>
+        <item> Tangail</item>
+        <item> Bagerhat</item>
+        <item> Chuadanga</item>
+        <item> Jessore</item>
+        <item> Jhenaidah</item>
+        <item> Khulna</item>
+        <item> Kushtia</item>
+        <item> Magura</item>
+        <item> Meherpur</item>
+        <item> Narail</item>
+        <item> Satkhira</item>
+        <item> Jamalpur</item>
+        <item> Mymensingh</item>
+        <item> Netrokona</item>
+        <item> Sherpur</item>
+        <item> Bogura</item>
+        <item> Joypurhat</item>
+        <item> Naogaon</item>
+        <item> Natore</item>
+        <item> Chapainawabganj</item>
+        <item> Pabna</item>
+        <item> Rajshahi</item>
+        <item> Sirajganj</item>
+        <item> Dinajpur</item>
+        <item> Gaibandha</item>
+        <item> Kurigram</item>
+        <item> Lalmonirhat</item>
+        <item> Nilphamari</item>
+        <item> Panchagarh</item>
+        <item> Rangpur</item>
+        <item> Thakurgaon</item>
+        <item> Habiganj</item>
+        <item> Moulvibazar</item>
+        <item> Sunamganj</item>
+        <item> Sylhet</item>
+        <item> Cox\'s Bazar</item>
+
     </string-array>
 
     <string-array name="journey_date">

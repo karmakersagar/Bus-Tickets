@@ -15,7 +15,7 @@
 
         <meta-data
             android:name="com.google.android.actions"
-            android:resource="@xml/ic_place" />
+            android:resource="@xml/ic_calender" />
 
         <activity android:name=".SplassActivity">
             <intent-filter>

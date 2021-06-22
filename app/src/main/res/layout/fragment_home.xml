@@ -67,8 +67,8 @@
             android:layout_marginEnd="32dp"
             android:hint="Journey Date : "
             android:layout_marginTop="20dp"
+            app:startIconDrawable="@drawable/ic_baseline_calendar_today_24"
             android:id="@+id/textInputLayoutId"
-
             >
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -76,6 +76,10 @@
                 android:layout_weight="1"
                 android:id="@+id/journeydate_editTextViewId"
                 android:fontFamily="monospace"
+                android:clickable="false"
+
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 

@@ -116,7 +116,7 @@ public class HomeFragment extends Fragment {
                         journeyYear,
                         journeyMonth,
                         journeyDate);
-                datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis()-1000);
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis()-1000);;
                 datePickerDialog.show();
             }
         });
@@ -142,6 +142,7 @@ public class HomeFragment extends Fragment {
                     journeyDateEditText.requestFocus();
                     return;
                 }
+
                 Intent intent = new Intent(getActivity(), Buslist.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
