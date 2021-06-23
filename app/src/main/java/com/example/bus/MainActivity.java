@@ -31,9 +31,12 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private NavigationView navigationView;
-    private AlertDialog.Builder logOutBuilder;
+    private AlertDialog.Builder logOutBuilder,exitAppBuilder;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
+    private FirebaseDatabase firebaseDatabase;
+
+
 
 
     @Override
@@ -59,21 +62,22 @@ public class MainActivity extends AppCompatActivity {
             String userId = firebaseUser.getUid();
             FirebaseDatabase.getInstance("https://buss-886c2-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("users").child(userId).child("passWord").setValue(password);
         }
-
         showFragments(new HomeFragment());
+
         drawerLayout.closeDrawer(GravityCompat.START);
+        //finish();
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.home :
                         Toast.makeText(MainActivity.this, "Home Menu is Clicked !!", Toast.LENGTH_SHORT).show();
-                        showFragments(new HomeFragment());
+                        showFragmentsss(new HomeFragment());
                         drawerLayout.closeDrawer(GravityCompat.START);
                         return true;
                     case R.id.profile:
                         Toast.makeText(MainActivity.this, "Profile Menu is Clicked !!", Toast.LENGTH_SHORT).show();
-                        showFragments(new Profile());
+                        showFragmentsss(new Profile());
                         drawerLayout.closeDrawer(GravityCompat.START);
                         return true;
 
@@ -126,6 +130,13 @@ public class MainActivity extends AppCompatActivity {
     public void showFragments(Fragment fragment){
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frameLayout,fragment);
+        //fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+
+    }
+    public void showFragmentsss(Fragment fragment){
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout,fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 
@@ -146,7 +157,26 @@ public class MainActivity extends AppCompatActivity {
         if(drawerLayout.isDrawerOpen(GravityCompat.START)){
             drawerLayout.closeDrawer(GravityCompat.START);
         }else {
-            super.onBackPressed();
+           exitAppBuilder = new AlertDialog.Builder(MainActivity.this);
+        exitAppBuilder.setMessage("Tui ki Asolei ber hoye jabi Ga ?").setCancelable(false)
+                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                             MainActivity.super.onBackPressed();
+                    }
+                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        exitAppBuilder.show();
         }
+
+      /*  if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }*/
+
     }
 }
