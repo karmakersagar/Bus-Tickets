@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseUser firebaseUser;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
-    String fName, lastName,userId;
+    String userId;
     private View nView;
     private TextView fullName;
 
@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
         if(drawerLayout.isDrawerOpen(GravityCompat.START)){
             drawerLayout.closeDrawer(GravityCompat.START);
         }else {
-           exitAppBuilder = new AlertDialog.Builder(MainActivity.this);
+           /*exitAppBuilder = new AlertDialog.Builder(MainActivity.this);
         exitAppBuilder.setMessage("Tui ki Asolei ber hoye jabi Ga ?").setCancelable(false)
                 .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
@@ -200,7 +200,8 @@ public class MainActivity extends AppCompatActivity {
                 dialogInterface.dismiss();
             }
         });
-        exitAppBuilder.show();
+        exitAppBuilder.show();*/
+            super.onBackPressed();
         }
 
       /*  if(drawerLayout.isDrawerOpen(GravityCompat.START)){
