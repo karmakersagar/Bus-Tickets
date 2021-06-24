@@ -36,14 +36,15 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseUser firebaseUser;
     private FirebaseDatabase firebaseDatabase;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar = findViewById(R.id.toolbar);
+
+        toolbar = (Toolbar)findViewById(R.id.toolbarId);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("Main Activity");
+
         //setSupportActionBar(toolbar);
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer);
         navigationView = findViewById(R.id.NavigationView);
