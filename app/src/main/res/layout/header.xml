@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="350dp"
     android:padding="20dp"
-    android:background="#fff">
+
+    android:background="@drawable/nav_header">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="150dp"

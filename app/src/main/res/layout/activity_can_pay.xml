@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+    android:fillViewport="true"
+    android:layout_height="match_parent" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".CanPay"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BusName : "
+
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:id="@+id/busNameId"
+            android:layout_margin="10dp"
+            android:fontFamily="monospace"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="JourneyDate : "
+            android:textColor="@color/black"
+            android:layout_margin="10dp"
+            android:textSize="20sp"
+            android:id="@+id/busJourneyDateId"
+            android:fontFamily="monospace"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BusCondition : "
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            android:fontFamily="monospace"
+            android:id="@+id/busConditionId"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Seat : "
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:id="@+id/totalSeatId"
+            android:layout_margin="10dp"
+            android:fontFamily="monospace"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="5"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:text="Total Cost : "
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:id="@+id/totalCostId"
+                android:fontFamily="monospace"
+                />
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="2"
+
+                android:layout_height="wrap_content"
+                android:text="Apply Coupon"
+                android:textAllCaps="false"
+                android:textSize="15sp"
+                android:id="@+id/applyCouponId"
+                android:fontFamily="serif"
+                android:textStyle="bold"
+                />
+        </LinearLayout>
+
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            >
+            <androidx.cardview.widget.CardView
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:padding="5dp"
+                android:id="@+id/bkashCardViewId"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    >
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/bkash"
+                        app:civ_border_width="3dp"
+
+                        />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:padding="10dp"
+                        android:layout_margin="5dp"
+                        android:background="@color/black"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bkash"
+                        android:textSize="15sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_marginTop="5dp"
+                        android:padding="5dp"
+
+                        />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:id="@+id/nagadCardViewId"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    >
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:src="@drawable/nagad"
+                        app:civ_border_width="3dp"
+
+                        />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:padding="10dp"
+                        android:layout_margin="5dp"
+                        android:background="@color/black"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nagad"
+                        android:textSize="15sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_marginTop="5dp"
+
+                        />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            >
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:id="@+id/mCashCardViewId"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    >
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:src="@drawable/mcash"
+                        app:civ_border_width="3dp"
+                        android:layout_margin="5dp"
+                        />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:padding="10dp"
+                        android:layout_margin="5dp"
+                        android:background="@color/black"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="mCash"
+                        android:padding="5dp"
+                        android:textSize="15sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_marginTop="5dp"
+
+                        />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:id="@+id/rocketCardViewId"
+                android:padding="5dp"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_margin="5dp"
+                    >
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:src="@drawable/rocket"
+                        app:civ_border_width="3dp"
+                        android:layout_margin="5dp"
+                        />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:padding="10dp"
+                        android:layout_margin="5dp"
+                        android:background="@color/black"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rocket"
+                        android:textSize="15sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:padding="5dp"
+                        android:layout_marginTop="5dp"
+
+                        />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+        </LinearLayout>
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pay"
+            android:id="@+id/payButtonId"
+            android:layout_margin="20dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            />
+
+    </LinearLayout>
+</ScrollView>
+
+

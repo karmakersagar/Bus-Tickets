@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".BookingFinish"
+    android:background="#C9EFF4"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bus Name : "
+        android:id="@+id/busNameId"
+        android:layout_marginTop="40dp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:fontFamily="cursive"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Journey Date : "
+        android:gravity="center"
+        android:id="@+id/busJourneyDateId"
+        android:textSize="19sp"
+        android:fontFamily="monospace"
+        android:textColor="@color/black"
+
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Bus Condition"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:fontFamily="monospace"
+        />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bus_icon"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/successfull_book"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:layout_marginTop="20sp"
+        android:textColor="#2465D6"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Home"
+        android:layout_gravity="center"
+        android:textAllCaps="false"
+        android:id="@+id/homeButtonId"
+        android:textSize="20sp"
+        android:fontFamily="monospace"
+        android:padding="5dp"
+        />
+
+
+</LinearLayout>

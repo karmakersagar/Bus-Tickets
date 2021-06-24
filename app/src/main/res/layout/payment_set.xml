@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+
+    android:layout_height="wrap_content">
+
+
+<EditText
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:hint="Phone Number :"
+    android:layout_margin="10dp"
+    android:textColor="@color/black"
+    android:fontFamily="monospace"
+    android:inputType="number"
+    android:id="@+id/phoneNumberId"
+    />
+    <EditText
+        android:textColor="#ff22"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="Password"
+        android:inputType="number"
+        android:id="@+id/passwordId"
+        android:layout_margin="10dp"
+        />
+
+
+</LinearLayout>

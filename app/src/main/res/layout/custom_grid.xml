@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="4dp"
+    android:layout_margin = "5dp"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="60dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="60dp"
+        android:src="@drawable/seat"
+        app:civ_border_color="@color/black"
+        app:civ_border_width="3dp"
+        android:id="@+id/seatImageid"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="A1"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:id="@+id/seatTextViewId"
+        />
+</LinearLayout>
+
+

@@ -63,7 +63,7 @@
                     android:id="@+id/emailImage"
                     android:layout_width="20dp"
                     android:layout_height="36dp"
-                    android:src="@drawable/ic_baseline_email_24" />
+                    android:src="@drawable/ic_emai_icon" />
 
                 <TextView
                     android:id="@+id/eamilTxt"

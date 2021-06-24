@@ -36,24 +36,32 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseUser firebaseUser;
     private FirebaseDatabase firebaseDatabase;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbarId);
         //setSupportActionBar(toolbar);
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer);
         navigationView = findViewById(R.id.NavigationView);
         firebaseAuth = FirebaseAuth.getInstance();
 
+        toolbar = (Toolbar)findViewById(R.id.toolbarId);
+        setSupportActionBar(toolbar);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setTitle("Main Activity");
+
+
+
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.Open,R.string.Close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
 
         actionBarDrawerToggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); 
+
+
+
+
         Intent iin = getIntent();
         Bundle data = iin.getExtras();
         if(data!=null){
@@ -103,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 // log out
                                 FirebaseAuth.getInstance().signOut();
-                                startActivity(new Intent(getApplicationContext(),Login.class));
+                                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                                 finish();
                             }
                         });

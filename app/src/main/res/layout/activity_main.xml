@@ -16,20 +16,32 @@
         android:layout_height="match_parent"
         android:id="@+id/frameLayout"/>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
 
-    <com.google.android.material.navigation.NavigationView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/NavigationView"
-            android:fitsSystemWindows="true"
-            android:background="#fff"
-            app:menu="@menu/menu"
-            app:headerLayout="@layout/header"
-            android:layout_gravity="start"
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/toolbarId"
+            app:title="Main Page"
+            app:titleTextColor="@color/cardview_light_background"
+            android:background="@color/startblue"
+
             />
 
-
-
+    </RelativeLayout>
+    <com.google.android.material.navigation.NavigationView
+        android:layout_marginTop="57dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/NavigationView"
+        android:fitsSystemWindows="true"
+        android:background="#fff"
+        app:menu="@menu/menu"
+        app:headerLayout="@layout/header"
+        android:layout_gravity="start"
+        />
 
     </androidx.drawerlayout.widget.DrawerLayout>

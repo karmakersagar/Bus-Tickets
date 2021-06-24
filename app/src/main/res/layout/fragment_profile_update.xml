@@ -84,7 +84,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_baseline_email_24"
+                android:drawableLeft="@drawable/ic_emai_icon"
                 android:drawablePadding="10dp"
                 android:text="prodipta0109@gmail.com"/>
         </com.google.android.material.textfield.TextInputLayout>

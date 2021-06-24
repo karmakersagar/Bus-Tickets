@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="10dp"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:id="@+id/custom_imageViewId"
+            android:padding="2dp"
+            app:civ_border_color="@color/black"
+            app:civ_border_width="2dp"
+            android:src="@drawable/bus"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/custom_imageViewId"
+            android:layout_alignParentTop="true"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:text="Bus Name"
+            android:layout_marginStart="30dp"
+            android:id="@+id/busNameId"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/custom_imageViewId"
+            android:id="@+id/busNumberId"
+            android:layout_below="@+id/busNameId"
+            android:textColor="@color/black"
+            android:text="Bus Number"
+            android:layout_marginStart="30dp"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/custom_imageViewId"
+            android:id="@+id/busJourneyDateId"
+            android:layout_below="@+id/busNumberId"
+            android:textColor="@color/black"
+            android:text="Journey Date"
+            android:layout_marginStart="30dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/custom_imageViewId"
+            android:id="@+id/fromId"
+            android:layout_below="@+id/busJourneyDateId"
+            android:textColor="@color/black"
+            android:text="From"
+            android:layout_marginStart="30dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/custom_imageViewId"
+            android:id="@+id/toId"
+            android:layout_below="@+id/fromId"
+            android:textColor="@color/black"
+            android:text="To:"
+            android:layout_marginStart="30dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/custom_imageViewId"
+            android:id="@+id/busConditionId"
+            android:layout_below="@+id/toId"
+            android:textColor="@color/black"
+            android:text="Bus Condition"
+            android:layout_marginStart="30dp"
+            />
+
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
