@@ -110,6 +110,16 @@ public class Update_Profile extends Fragment {
 
         databaseReference = FirebaseDatabase.getInstance("https://buss-886c2-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("users").child(userId);
 
+        emailEDit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Email cannot be changed", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
