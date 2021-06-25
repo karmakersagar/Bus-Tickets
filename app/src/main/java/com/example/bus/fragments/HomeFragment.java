@@ -16,6 +16,7 @@ import android.widget.DatePicker;
 
 
 import com.example.bus.R;
+import com.example.bus.passSearchData;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -76,9 +77,9 @@ public class HomeFragment extends Fragment {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String fromCity = fromAutoCompleteTextView.getText().toString().toLowerCase();
-                String toCity = toAutoCompleteTextView.getText().toString().toLowerCase();
-                String date = journeyDateEditText.getText().toString().toLowerCase();
+                String fromCity = fromAutoCompleteTextView.getText().toString();
+                String toCity = toAutoCompleteTextView.getText().toString();
+                String date = journeyDateEditText.getText().toString();
                 if(fromCity.isEmpty()){
                     fromAutoCompleteTextView.setError("From City is Required");
                     fromAutoCompleteTextView.requestFocus();
@@ -97,7 +98,19 @@ public class HomeFragment extends Fragment {
 
                 Intent intent = new Intent(getActivity(), BuslistActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("fromLocation", fromCity);
+                intent.putExtra("toLocation",toCity);
+                intent.putExtra("journeyDate",date);
                 startActivity(intent);
+
+//                Bundle sendSearchData = getArguments();
+//                sendSearchData.putString("fromLocation",fromCity);
+//                sendSearchData.putString("toLocation",toCity);
+//                sendSearchData.putString("journeyDate",date);
+                //
+                // passSearchData locationData = new passSearchData(fromCity,toCity,date);
+
+//                startActivity(intentBusListActivity);
             }
         });
 

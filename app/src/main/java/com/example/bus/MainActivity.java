@@ -157,23 +157,26 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         if(drawerLayout.isDrawerOpen(GravityCompat.START)){
             drawerLayout.closeDrawer(GravityCompat.START);
-        }else {
-           exitAppBuilder = new AlertDialog.Builder(MainActivity.this);
-        exitAppBuilder.setMessage("Tui ki Asolei ber hoye jabi Ga ?").setCancelable(false)
-                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                             MainActivity.super.onBackPressed();
-                    }
-                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
-            }
-        });
-        exitAppBuilder.show();
         }
+        else{
+            super.onBackPressed();
+        }
+//           //else {exitAppBuilder = new AlertDialog.Builder(MainActivity.this);
+//        exitAppBuilder.setMessage("Tui ki Asolei ber hoye jabi Ga ?").setCancelable(false)
+//                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//
+//                             MainActivity.super.onBackPressed();
+//                    }
+//                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                dialogInterface.dismiss();
+//            }
+//        });
+//        exitAppBuilder.show();
+//        }
 
       /*  if(drawerLayout.isDrawerOpen(GravityCompat.START)){
             drawerLayout.closeDrawer(GravityCompat.START);

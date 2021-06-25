@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Bus Name : "
-        android:id="@+id/busNameId"
+        android:id="@+id/busFareID"
         android:layout_marginTop="40dp"
         android:textColor="@color/black"
         android:gravity="center"

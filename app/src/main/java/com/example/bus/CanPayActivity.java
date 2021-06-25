@@ -31,7 +31,7 @@ public class CanPayActivity extends AppCompatActivity {
         String numberOfSeats = intent.getStringExtra("numberOfSeats").toString();
         String totalCosts = intent.getStringExtra("totalCosts").toString();
 
-        busNameTextView = (TextView)findViewById(R.id.busNameId);
+        busNameTextView = (TextView)findViewById(R.id.busFareID);
         journeyDateTextView = (TextView)findViewById(R.id.busJourneyDateId);
         busConditionTextView = (TextView)findViewById(R.id.busConditionId);
         numberOfSeatsTextView = (TextView)findViewById(R.id.totalSeatId);

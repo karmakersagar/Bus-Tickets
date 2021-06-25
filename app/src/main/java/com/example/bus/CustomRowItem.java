@@ -2,33 +2,18 @@ package com.example.bus;
 
 public class CustomRowItem {
 
-    private int imageResource;
-    private String busNumber,busName,busCondition,from,to,journeyDate;
+    String busName, startingPoint, endingPoint, time, fare, type;
 
-    public CustomRowItem(int imageResource, String busNumber, String busName, String busCondition, String from, String to, String journeyDate) {
-        this.imageResource = imageResource;
-        this.busNumber = busNumber;
+    public CustomRowItem() {
+    }
+
+    public CustomRowItem(String busName, String startingPoint, String endingPoint, String time, String fare, String type) {
         this.busName = busName;
-        this.busCondition = busCondition;
-        this.from = from;
-        this.to = to;
-        this.journeyDate = journeyDate;
-    }
-
-    public int getImageResource() {
-        return imageResource;
-    }
-
-    public void setImageResource(int imageResource) {
-        this.imageResource = imageResource;
-    }
-
-    public String getBusNumber() {
-        return busNumber;
-    }
-
-    public void setBusNumber(String busNumber) {
-        this.busNumber = busNumber;
+        this.startingPoint = startingPoint;
+        this.endingPoint = endingPoint;
+        this.time = time;
+        this.fare = fare;
+        this.type = type;
     }
 
     public String getBusName() {
@@ -39,35 +24,43 @@ public class CustomRowItem {
         this.busName = busName;
     }
 
-    public String getBusCondition() {
-        return busCondition;
+    public String getStartingPoint() {
+        return startingPoint;
     }
 
-    public void setBusCondition(String busCondition) {
-        this.busCondition = busCondition;
+    public void setStartingPoint(String startingPoint) {
+        this.startingPoint = startingPoint;
     }
 
-    public String getFrom() {
-        return from;
+    public String getEndingPoint() {
+        return endingPoint;
     }
 
-    public void setFrom(String from) {
-        this.from = from;
+    public void setEndingPoint(String endingPoint) {
+        this.endingPoint = endingPoint;
     }
 
-    public String getTo() {
-        return to;
+    public String getTime() {
+        return time;
     }
 
-    public void setTo(String to) {
-        this.to = to;
+    public void setTime(String time) {
+        this.time = time;
     }
 
-    public String getJourneyDate() {
-        return journeyDate;
+    public String getFare() {
+        return fare;
     }
 
-    public void setJourneyDate(String journeyDate) {
-        this.journeyDate = journeyDate;
+    public void setFare(String fare) {
+        this.fare = fare;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

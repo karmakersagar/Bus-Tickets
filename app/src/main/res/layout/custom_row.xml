@@ -1,91 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="10dp"
+    app:cardElevation="8dp"
     app:cardCornerRadius="10dp"
-    android:layout_height="wrap_content">
+    android:padding="300dp"
+    android:layout_margin="10dp">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="50dp">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:id="@+id/custom_imageViewId"
-            android:padding="2dp"
-            app:civ_border_color="@color/black"
-            app:civ_border_width="2dp"
-            android:src="@drawable/bus"
-            />
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/custom_imageViewId"
-            android:layout_alignParentTop="true"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:textColor="@color/black"
-            android:text="Bus Name"
-            android:layout_marginStart="30dp"
-            android:id="@+id/busNameId"
-            />
-        <TextView
-            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bus Name : "
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:padding="5dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hanif"
+                android:id="@+id/bus_name"
+                android:layout_marginStart="40dp"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/custom_imageViewId"
-            android:id="@+id/busNumberId"
-            android:layout_below="@+id/busNameId"
-            android:textColor="@color/black"
-            android:text="Bus Number"
-            android:layout_marginStart="30dp"
-            />
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Starting Point : "
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:padding="5dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dhaka"
+                android:id="@+id/starting_point"
+                android:layout_marginStart="10dp"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                />
+        </LinearLayout>
 
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/custom_imageViewId"
-            android:id="@+id/busJourneyDateId"
-            android:layout_below="@+id/busNumberId"
-            android:textColor="@color/black"
-            android:text="Journey Date"
-            android:layout_marginStart="30dp"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/custom_imageViewId"
-            android:id="@+id/fromId"
-            android:layout_below="@+id/busJourneyDateId"
-            android:textColor="@color/black"
-            android:text="From"
-            android:layout_marginStart="30dp"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/custom_imageViewId"
-            android:id="@+id/toId"
-            android:layout_below="@+id/fromId"
-            android:textColor="@color/black"
-            android:text="To:"
-            android:layout_marginStart="30dp"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/custom_imageViewId"
-            android:id="@+id/busConditionId"
-            android:layout_below="@+id/toId"
-            android:textColor="@color/black"
-            android:text="Bus Condition"
-            android:layout_marginStart="30dp"
-            />
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ending point : "
+                android:padding="5dp"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rajshahi"
+                android:id="@+id/ending_point"
+                android:layout_marginStart="20dp"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                />
+        </LinearLayout>
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time : "
+                android:padding="5dp"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                />
 
-    </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0800"
+                android:id="@+id/time"
+                android:layout_marginStart="89dp"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fare : "
+                android:padding="5dp"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="500"
+                android:id="@+id/fare"
+                android:layout_marginStart="92dp"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Type : "
+                android:padding="5dp"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Non-A/C"
+                android:id="@+id/type"
+                android:layout_marginStart="86dp"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                />
+        </LinearLayout>
+
+
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>

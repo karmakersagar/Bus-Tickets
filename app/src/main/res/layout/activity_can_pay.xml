@@ -22,7 +22,7 @@
 
             android:textColor="@color/black"
             android:textSize="20sp"
-            android:id="@+id/busNameId"
+            android:id="@+id/busFareID"
             android:layout_margin="10dp"
             android:fontFamily="monospace"
             />
