@@ -46,6 +46,7 @@ public class SeatChoose extends AppCompatActivity {
         String Time = intent.getStringExtra("time").toString();
         String Fare =intent.getStringExtra("fare").toString();
         String Type = intent.getStringExtra("type").toString();
+        String journeyDate = intent.getStringExtra("journeyDate").toString();
         seatPrice =Double.parseDouble(Fare) ;
 
         List<CustomGrid> list = new ArrayList<CustomGrid>();
@@ -83,12 +84,12 @@ public class SeatChoose extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent1  = new Intent(getApplicationContext(),CanPayActivity.class);
-//                intent1.putExtra("busName",BusName);
-//                intent1.putExtra("journeyDate",JourneyDate);
-//                intent1.putExtra("busCondition",BusCondition);
-//                intent1.putExtra("numberOfSeats",Integer.toString(totalSeats));
-//                intent1.putExtra("totalCosts",Double.toString(totalCost));
-//                startActivity(intent1);
+                intent1.putExtra("busName",BusName);
+                intent1.putExtra("journeyDate",journeyDate);
+                intent1.putExtra("busCondition",Type);
+                intent1.putExtra("numberOfSeats",Integer.toString(totalSeats));
+                intent1.putExtra("totalCosts",Double.toString(totalCost));
+                startActivity(intent1);
             }
         });
 

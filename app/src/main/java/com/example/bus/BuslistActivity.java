@@ -24,7 +24,7 @@ import java.util.List;
 
 public class BuslistActivity extends AppCompatActivity {
     //private static final String TAG = BuslistActivity;
-    private String busName, start, end, time, fare, type,fromCity,toCity,jdate;
+    private String busName, start, end, time, fare, type,fromCity,toCity,jdate, busID;
     private RecyclerView recyclerView;
 
    // Bundle busListIntent = getIntent().getExtras();
@@ -56,7 +56,8 @@ public class BuslistActivity extends AppCompatActivity {
         db = FirebaseDatabase.getInstance("https://buss-886c2-default-rtdb.asia-southeast1.firebasedatabase.app/");
         root = db.getReference("BusDetails").child(FromLocation).child(ToLocation);
 
-        Toast.makeText(this, "Data loaded :" + root.toString(), Toast.LENGTH_SHORT).show();
+//        Intent intentDatePass = new Intent(getApplicationContext(),SeatChoose.class);
+//        intentDatePass.putExtra("journeyDate" , JourneyDate);
 
         recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
@@ -71,19 +72,27 @@ public class BuslistActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    busName = dataSnapshot.child("Bus Name").getValue(String.class);
-                    start = dataSnapshot.child("Starting Point").getValue(String.class);
-                    end  = dataSnapshot.child("Ending Point").getValue(String.class);
-                    time = dataSnapshot.child("Time").getValue(String.class);
-                    fare  = dataSnapshot.child("Fare").getValue(String.class);
-                    type = dataSnapshot.child("Type").getValue(String.class);
+                if(snapshot.exists()) {
 
-                    list.add(new CustomRowItem(busName, start, end, time, fare, type));
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        busName = dataSnapshot.child("Bus Name").getValue(String.class);
+                        start = dataSnapshot.child("Starting Point").getValue(String.class);
+                        end = dataSnapshot.child("Ending Point").getValue(String.class);
+                        time = dataSnapshot.child("Time").getValue(String.class);
+                        fare = dataSnapshot.child("Fare").getValue(String.class);
+                        type = dataSnapshot.child("Type").getValue(String.class);
+                        busID = dataSnapshot.child("ID").getValue(String.class);
+
+                        list.add(new CustomRowItem(busName, start, end, time, fare, type, busID, JourneyDate));
 //                    CustomRowItem model = dataSnapshot.getValue(CustomRowItem.class);
 //                    list.add(model);
+                    }
+                    adapter.notifyDataSetChanged();
                 }
-                adapter.notifyDataSetChanged();
+
+                else{
+                    Toast.makeText(BuslistActivity.this, "Sorry!! No buses available", Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override

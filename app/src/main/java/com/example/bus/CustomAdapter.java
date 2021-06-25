@@ -73,6 +73,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             String Time = busList.get(position).getTime();
             String Fare = busList.get(position).getFare();
             String Type = busList.get(position).getType();
+            String busID = busList.get(position).getBusID();
+            String journeyDate = busList.get(position).getJourneyDate();
 
             Intent intent = new Intent(context, SeatChoose.class);
 
@@ -82,6 +84,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             intent.putExtra("time",Time);
             intent.putExtra("fare",Fare);
             intent.putExtra("type",Type);
+            intent.putExtra("busID", busID);
+            intent.putExtra("journeyDate",journeyDate);
 
             context.startActivity(intent);
 //
