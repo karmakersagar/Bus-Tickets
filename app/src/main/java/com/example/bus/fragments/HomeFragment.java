@@ -97,11 +97,12 @@ public class HomeFragment extends Fragment {
                 }
 
                 Intent intent = new Intent(getActivity(), BuslistActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("fromLocation", fromCity);
                 intent.putExtra("toLocation",toCity);
                 intent.putExtra("journeyDate",date);
-                startActivity(intent);
+                //startActivity(intent);
+                getActivity().startActivity(intent);
 
 //                Bundle sendSearchData = getArguments();
 //                sendSearchData.putString("fromLocation",fromCity);

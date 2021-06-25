@@ -2,6 +2,7 @@ package com.example.bus;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder>{
-    ArrayList<CustomRowItem> busList;
-    Context context;
+    private List<CustomRowItem> busList;
+    private Context context;
 
-    public CustomAdapter(Context context, ArrayList<CustomRowItem> busList ) {
+    public CustomAdapter(Context context, List<CustomRowItem> busList ) {
         this.context = context;
         this.busList = busList;
 
@@ -47,7 +50,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         return busList.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public  class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView busname, start, end, time, fare, type;
 
         public MyViewHolder(@NonNull  View itemView) {
@@ -58,6 +61,34 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             time = itemView.findViewById(R.id.time);
             fare = itemView.findViewById(R.id.fare);
             type = itemView.findViewById(R.id.type);
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+            String busName = busList.get(position).getBusName();
+            String startPoint = busList.get(position).getStartingPoint();
+            String endPoint = busList.get(position).getEndingPoint();
+            String Time = busList.get(position).getTime();
+            String Fare = busList.get(position).getFare();
+            String Type = busList.get(position).getType();
+
+            Intent intent = new Intent(context, SeatChoose.class);
+
+            intent.putExtra("busName", busName);
+            intent.putExtra("start", startPoint);
+            intent.putExtra("end",endPoint);
+            intent.putExtra("time",Time);
+            intent.putExtra("fare",Fare);
+            intent.putExtra("type",Type);
+
+            context.startActivity(intent);
+//
+//        }
     }
+
+
+  }
 }
+

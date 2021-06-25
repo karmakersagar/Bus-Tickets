@@ -34,17 +34,29 @@ public class BuslistActivity extends AppCompatActivity {
 //    final String toSearchCity = searchData.getToCity();
 //    final String journeyDate = searchData.getDate();
 
-    private FirebaseDatabase db = FirebaseDatabase.getInstance("https://buss-886c2-default-rtdb.asia-southeast1.firebasedatabase.app/");
-    private DatabaseReference root = db.getReference("BusDetails").child("Dhaka").child("Rajshahi");
+
+    private FirebaseDatabase db;
+    private DatabaseReference root;
     private CustomAdapter adapter;
     private ArrayList<CustomRowItem> list;
     private ValueEventListener valueEventListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buslist);
+
+        Intent intent = getIntent();
+        String FromLocation = intent.getStringExtra("fromLocation").toString();
+        String ToLocation = intent.getStringExtra("toLocation").toString();
+        String JourneyDate = intent.getStringExtra("journeyDate").toString();
+
+
+
+        db = FirebaseDatabase.getInstance("https://buss-886c2-default-rtdb.asia-southeast1.firebasedatabase.app/");
+        root = db.getReference("BusDetails").child(FromLocation).child(ToLocation);
+
+        Toast.makeText(this, "Data loaded :" + root.toString(), Toast.LENGTH_SHORT).show();
 
         recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
