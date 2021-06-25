@@ -14,12 +14,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class CanPayActivity extends AppCompatActivity {
-    private TextView busNameTextView,journeyDateTextView,busConditionTextView,numberOfSeatsTextView,totalCostsTextView;
+    private TextView busNameTextView,journeyDateTextView,busConditionTextView,numberOfSeatsTextView,totalCostsTextView,fromTextView,toTextView;
     private Button button;
     private CardView bKashCardView,rocketCardView,mCashCardView,nagadCardView;
     private LayoutInflater layoutInflater;
     private View view;
-    private String BusName,JourneyDate,BusCondition;
+    private String BusName,JourneyDate,BusCondition,FromCity, ToCity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,10 +28,14 @@ public class CanPayActivity extends AppCompatActivity {
         BusName = intent.getStringExtra("busName").toString();
         JourneyDate = intent.getStringExtra("journeyDate").toString();
         BusCondition = intent.getStringExtra("busCondition").toString();
+        FromCity = intent.getStringExtra("fromCity").toString();
+        ToCity = intent.getStringExtra("toCity").toString();
         String numberOfSeats = intent.getStringExtra("numberOfSeats").toString();
         String totalCosts = intent.getStringExtra("totalCosts").toString();
 
         busNameTextView = (TextView)findViewById(R.id.busFareID);
+        fromTextView =(TextView)findViewById(R.id.fromID);
+        toTextView = (TextView)findViewById(R.id.toID);
         journeyDateTextView = (TextView)findViewById(R.id.busJourneyDateId);
         busConditionTextView = (TextView)findViewById(R.id.busConditionId);
         numberOfSeatsTextView = (TextView)findViewById(R.id.totalSeatId);
@@ -46,10 +50,12 @@ public class CanPayActivity extends AppCompatActivity {
 
         layoutInflater = LayoutInflater.from(getApplicationContext());
         busNameTextView.setText(BusName);
+        fromTextView.setText(FromCity);
+        toTextView.setText(ToCity);
         journeyDateTextView.setText(JourneyDate);
         busConditionTextView.setText(BusCondition);
-        numberOfSeatsTextView.setText("Seats: "+numberOfSeats);
-        totalCostsTextView.setText("Cost:"+totalCosts);
+        numberOfSeatsTextView.setText(numberOfSeats);
+        totalCostsTextView.setText(totalCosts);
 
 
         view = layoutInflater.inflate(R.layout.payment_set,null);

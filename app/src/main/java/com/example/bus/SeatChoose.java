@@ -83,13 +83,15 @@ public class SeatChoose extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1  = new Intent(getApplicationContext(),CanPayActivity.class);
-                intent1.putExtra("busName",BusName);
-                intent1.putExtra("journeyDate",journeyDate);
-                intent1.putExtra("busCondition",Type);
-                intent1.putExtra("numberOfSeats",Integer.toString(totalSeats));
-                intent1.putExtra("totalCosts",Double.toString(totalCost));
-                startActivity(intent1);
+                Intent intentPay  = new Intent(getApplicationContext(),CanPayActivity.class);
+                intentPay.putExtra("fromCity",StartPoint);
+                intentPay.putExtra("toCity",EndPoint);
+                intentPay.putExtra("busName",BusName);
+                intentPay.putExtra("journeyDate",journeyDate);
+                intentPay.putExtra("busCondition",Type);
+                intentPay.putExtra("numberOfSeats",Integer.toString(totalSeats));
+                intentPay.putExtra("totalCosts",Double.toString(totalCost));
+                startActivity(intentPay);
             }
         });
 
