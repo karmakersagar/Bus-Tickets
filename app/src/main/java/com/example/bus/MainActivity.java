@@ -14,6 +14,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bus.fragments.HomeFragment;
@@ -21,7 +23,11 @@ import com.example.bus.fragments.Profile;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -35,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
     private FirebaseDatabase firebaseDatabase;
+    private TextView fullName;
+    private String userId,firstName,lastName;
+    private View headerView;
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,23 +60,47 @@ public class MainActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.NavigationView);
         firebaseAuth = FirebaseAuth.getInstance();
 
+
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.Open,R.string.Close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
 
         actionBarDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Intent iin = getIntent();
         Bundle data = iin.getExtras();
         if(data!=null){
             String password = (String) data.get("Password");
             firebaseUser = firebaseAuth.getCurrentUser();
-            String userId = firebaseUser.getUid();
+             userId = firebaseUser.getUid();
             FirebaseDatabase.getInstance("https://buss-886c2-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("users").child(userId).child("passWord").setValue(password);
         }
+
+
+        //finish();
+        headerView = navigationView.getHeaderView(0);
+        fullName = headerView.findViewById(R.id.textFullName);
+        String userIddd = firebaseAuth.getCurrentUser().getUid();
+        databaseReference = FirebaseDatabase.getInstance("https://buss-886c2-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("users").child(userIddd);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                Users usr = snapshot.getValue(Users.class);
+                fullName.setText(usr.getFirstName() + " " + usr.getLastName());
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
         showFragments(new HomeFragment());
 
+
+
         drawerLayout.closeDrawer(GravityCompat.START);
-        //finish();
+
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
@@ -142,6 +176,10 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
 
     }
+   /* public void fullName(String firstName, String lastName){
+        fullName = headerView.findViewById(R.id.textFullName);
+        fullName.setText(firstName + " " + lastName);
+    }*/
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

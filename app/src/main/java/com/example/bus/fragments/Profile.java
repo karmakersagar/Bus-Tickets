@@ -1,5 +1,6 @@
 package com.example.bus.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bus.MainActivity;
 import com.example.bus.R;
 import com.example.bus.Users;
 import com.google.firebase.auth.FirebaseAuth;
@@ -94,6 +96,8 @@ public class Profile extends Fragment  {
 
             }
         });
+
+
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

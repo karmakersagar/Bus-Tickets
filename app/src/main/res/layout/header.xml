@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="350dp"
     android:padding="20dp"
-
-    android:background="@drawable/nav_header">
+    android:background="@drawable/nav_header"
+    >
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="150dp"
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:textColor="#000"
+        android:textColor="#ffff"
         android:textSize="21sp"
         android:textStyle="bold" />
 
