@@ -92,9 +92,61 @@ public class SeatChoose extends AppCompatActivity {
 
         List<CustomGrid> list = new ArrayList<CustomGrid>();
 
-        for(int i = 1 ; i <= 24 ; i++){
-            list.add(new CustomGrid(R.drawable.seat,"A"+i));
+
+//        for( int i = 1 ; i <= 24 ; i++){
+//
+//
+//            list.add(new CustomGrid(R.drawable.seat,"A"+i));
+//        }
+
+//        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+//                String a = snapshot.child("A1").getValue(String.class);
+//                if(a.equals("1")){
+//                    list.add(new CustomGrid(R.drawable.seat_booked,"A1"));
+//                }
+//                else{
+//                    list.add(new CustomGrid(R.drawable.seat,"A1"));
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+//
+//            }
+//        });
+
+        for(int i = 1; i<=24; i++){
+            int counter = i;
+            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                    String value = Integer.toString(counter);
+                    String value2 = "A" + value;
+                    String a = snapshot.child(value2).getValue(String.class);
+                    if(a.equals("1")){
+                        list.add(new CustomGrid(R.drawable.seat_booked,value2));
+                    }
+                    else{
+                        list.add(new CustomGrid(R.drawable.seat,value2));
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                }
+            });
         }
+
+
+
+
+
+
 
         CustomAdapterGrid adapter = new CustomAdapterGrid(SeatChoose.this,list);
         gridView.setAdapter(adapter);
