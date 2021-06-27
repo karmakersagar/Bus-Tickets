@@ -84,7 +84,6 @@ public class SeatChoose extends AppCompatActivity {
                 }
 
             }
-
             @Override
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
 
