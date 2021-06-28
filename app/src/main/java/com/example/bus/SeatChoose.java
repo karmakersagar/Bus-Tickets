@@ -6,11 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +29,9 @@ import com.google.firebase.database.ValueEventListener;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SeatChoose extends AppCompatActivity {
     private GridView gridView;
@@ -35,7 +39,7 @@ public class SeatChoose extends AppCompatActivity {
     private TextView selectedSeatsTextView,totalCostTextView;
     private FirebaseAuth auth;
     private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference databaseReference;
+    private DatabaseReference databaseReference,databaseReference2;
     Double seatPrice ;
     Double totalCost = 0.0;
     int totalSeats = 0;
@@ -68,126 +72,109 @@ public class SeatChoose extends AppCompatActivity {
         String journeyDate = intent.getStringExtra("journeyDate").toString();
         seatPrice =Double.parseDouble(Fare) ;
         databaseReference = firebaseDatabase.getInstance("https://buss-886c2-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("SeatDetails").child(busId).child(journeyDate);
+
+        List<CustomGrid> list = new ArrayList<CustomGrid>();
+        CustomAdapterGrid adapter = new CustomAdapterGrid(SeatChoose.this,list);
+        Map<String, String> seatMap = new HashMap<>();
+        gridView.setAdapter(adapter);
+
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                if(snapshot.exists() ){
-                    //do something
+                if(snapshot.exists()){
+                    int index;
+                    for(index = 1; index<=24; index++){
+                        String a = snapshot.child("A"+index).getValue(String.class);
+                        String index1 = Integer.toString(index);
+                        if(a.equals("1")){
+                            list.add(new CustomGrid(R.drawable.seat_booked,"A"+index1));
+                        }
+                        else{
+                            list.add(new CustomGrid(R.drawable.seat,"A"+index1));
+                        }
+                        seatMap.put("A"+index, a);
+
+                    }
+                    adapter.notifyDataSetChanged();
                 }
                 else{
-                    //create database
                     int index;
-                    for(  index = 1; index<=24; index++){
-                        databaseReference.child("A" + index).setValue(0);
-                    }
+                    for(index = 1;index <=24; index++){
+                        list.add(new CustomGrid(R.drawable.seat, "A"+index));
 
+                    }
+                    seatMap.put("A"+index, "0");
+                    adapter.notifyDataSetChanged();
                 }
 
             }
-            @Override
-            public void onCancelled(@NonNull @NotNull DatabaseError error) {
 
-            }
+        @Override
+        public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+        }
         });
 
-        List<CustomGrid> list = new ArrayList<CustomGrid>();
-
-
-//        for( int i = 1 ; i <= 24 ; i++){
-//
-//
-//            list.add(new CustomGrid(R.drawable.seat,"A"+i));
-//        }
-
-//        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-//                String a = snapshot.child("A1").getValue(String.class);
-//                if(a.equals("1")){
-//                    list.add(new CustomGrid(R.drawable.seat_booked,"A1"));
-//                }
-//                else{
-//                    list.add(new CustomGrid(R.drawable.seat,"A1"));
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull @NotNull DatabaseError error) {
-//
-//            }
-//        });
-
-        for(int i = 1; i<=24; i++){
-            int counter = i;
-            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                    String value = Integer.toString(counter);
-                    String value2 = "A" + value;
-                    String a = snapshot.child(value2).getValue(String.class);
-                    if(a.equals("1")){
-                        list.add(new CustomGrid(R.drawable.seat_booked,value2));
-                    }
-                    else{
-                        list.add(new CustomGrid(R.drawable.seat,value2));
-                    }
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
-                }
-            });
-        }
-
-
-
-
-
-
-
-        CustomAdapterGrid adapter = new CustomAdapterGrid(SeatChoose.this,list);
-        gridView.setAdapter(adapter);
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                if(isSelectSeat[position] == 0){
-                    view.setBackgroundColor(Color.parseColor("#00FF00"));
-                    totalCost += seatPrice;
-                    ++totalSeats;
-                    Toast.makeText(getApplicationContext(), "You Selected Seat Number :" + (position + 1), Toast.LENGTH_SHORT).show();
-                    isSelectSeat[position] = 1;
-                }else{
+                String seat = "A" + Integer.toString(position + 1);
+                if (seatMap.get(seat).equals("1")) {
+                    Toast.makeText(SeatChoose.this, "This seat is already booked! Please choose another one!!", Toast.LENGTH_SHORT).show();
                     view.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                    totalCost -= seatPrice;
-                    --totalSeats;
-                    Toast.makeText(getApplicationContext(), "You Unselected Seat Number :" + (position + 1), Toast.LENGTH_SHORT).show();
-                    isSelectSeat[position] = 0;
+
+                } else if(seatMap.get(seat).equals("0")) {
+                    if (isSelectSeat[position] == 0) {
+                        view.setBackgroundColor(Color.parseColor("#00FF00"));
+                        totalCost += seatPrice;
+                        ++totalSeats;
+                        Toast.makeText(getApplicationContext(), "You Selected Seat Number :" + (position + 1), Toast.LENGTH_SHORT).show();
+                        isSelectSeat[position] = 1;
+                        seatMap.put(seat,"1");
+
+                    } else{
+                        view.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                        totalCost -= seatPrice;
+                        --totalSeats;
+                        Toast.makeText(getApplicationContext(), "You Unselected Seat Number :" + (position + 1), Toast.LENGTH_SHORT).show();
+                        isSelectSeat[position] = 0;
+                        seatMap.put(seat,"0");
+                    }
+                    totalCostTextView.setText("Total Cost:" + totalCost + "");
+                    selectedSeatsTextView.setText("Number of selected Seats:" + totalSeats + "");
                 }
-                totalCostTextView.setText("Total Cost:" + totalCost+"");
-                selectedSeatsTextView.setText("Number of selected Seats:"+totalSeats+"");
             }
         });
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intentPay  = new Intent(getApplicationContext(),CanPayActivity.class);
-                intentPay.putExtra("fromCity",StartPoint);
-                intentPay.putExtra("toCity",EndPoint);
-                intentPay.putExtra("busName",BusName);
-                intentPay.putExtra("journeyDate",journeyDate);
-                intentPay.putExtra("busCondition",Type);
-                intentPay.putExtra("numberOfSeats",Integer.toString(totalSeats));
-                intentPay.putExtra("totalCosts",Double.toString(totalCost));
-                startActivity(intentPay);
-            }
-        });
+
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(totalSeats>=1){
+
+                        Intent intentPay  = new Intent(getApplicationContext(),CanPayActivity.class);
+                        intentPay.putExtra("seatMap", (Parcelable) seatMap);
+                        intentPay.putExtra("fromCity",StartPoint);
+                        intentPay.putExtra("toCity",EndPoint);
+                        intentPay.putExtra("busName",BusName);
+                        intentPay.putExtra("journeyDate",journeyDate);
+                        intentPay.putExtra("busCondition",Type);
+                        intentPay.putExtra("numberOfSeats",Integer.toString(totalSeats));
+                        intentPay.putExtra("totalCosts",Double.toString(totalCost));
+                        startActivity(intentPay);
+                    }
+                    else {
+                        Toast.makeText(SeatChoose.this, "You have to select at least one seat to proceed", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            });
+
+
+
 
 
     }
+
 }

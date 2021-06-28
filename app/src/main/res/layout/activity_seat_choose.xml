@@ -68,7 +68,7 @@
             android:numColumns="4"
             android:id="@+id/gridViewId"
             android:padding="3dp"
-            android:listSelector="#049E0A"
+            android:listSelector="#ffffff"
             android:verticalSpacing="5dp"
             android:horizontalSpacing="3dp"
             android:scrollbars="vertical"

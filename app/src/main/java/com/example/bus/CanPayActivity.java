@@ -13,6 +13,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class CanPayActivity extends AppCompatActivity {
     private TextView busNameTextView,journeyDateTextView,busConditionTextView,numberOfSeatsTextView,totalCostsTextView,fromTextView,toTextView;
     private Button button;
@@ -32,6 +35,7 @@ public class CanPayActivity extends AppCompatActivity {
         ToCity = intent.getStringExtra("toCity").toString();
         String numberOfSeats = intent.getStringExtra("numberOfSeats").toString();
         String totalCosts = intent.getStringExtra("totalCosts").toString();
+        Map<String,String> seatMap = (HashMap<String, String>)intent.getSerializableExtra("seatMap");
 
         busNameTextView = (TextView)findViewById(R.id.busFareID);
         fromTextView =(TextView)findViewById(R.id.fromID);
