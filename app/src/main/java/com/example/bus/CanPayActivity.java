@@ -35,7 +35,7 @@ public class CanPayActivity extends AppCompatActivity {
         ToCity = intent.getStringExtra("toCity").toString();
         String numberOfSeats = intent.getStringExtra("numberOfSeats").toString();
         String totalCosts = intent.getStringExtra("totalCosts").toString();
-        Map<String,String> seatMap = (HashMap<String, String>)intent.getSerializableExtra("seatMap");
+       // Map<String,String> seatMap = (HashMap<String, String>)intent.getSerializableExtra("seatMap");
 
         busNameTextView = (TextView)findViewById(R.id.busFareID);
         fromTextView =(TextView)findViewById(R.id.fromID);
