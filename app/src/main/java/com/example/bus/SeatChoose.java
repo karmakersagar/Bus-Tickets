@@ -104,9 +104,9 @@ public class SeatChoose extends AppCompatActivity {
                     int index;
                     for(index = 1;index <=24; index++){
                         list.add(new CustomGrid(R.drawable.seat, "A"+index));
-
+                        seatMap.put("A"+index, "0");
                     }
-                    seatMap.put("A"+index, "0");
+
                     adapter.notifyDataSetChanged();
                 }
 
@@ -129,14 +129,8 @@ public class SeatChoose extends AppCompatActivity {
 
                // if(seatMap.get(seat).equals("0")) {
                     if (isSelectSeat[position] == 0) {
-                        if (seatMap.get(seat).equals("1") || seatMap.get(seat).equals("2") ) {
-                            Toast.makeText(SeatChoose.this, "This seat is already booked! Please choose another one!!", Toast.LENGTH_SHORT).show();
-                            view.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                            //seatMap.put(seat,"2");
 
-                        }
-
-                        else if(seatMap.get(seat).equals("0")){
+                         if(seatMap.get(seat).equals("0")){
                             view.setBackgroundColor(Color.parseColor("#00FF00"));
                             totalCost += seatPrice;
                             ++totalSeats;
