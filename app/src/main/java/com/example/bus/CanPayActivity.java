@@ -35,7 +35,17 @@ public class CanPayActivity extends AppCompatActivity {
         ToCity = intent.getStringExtra("toCity").toString();
         String numberOfSeats = intent.getStringExtra("numberOfSeats").toString();
         String totalCosts = intent.getStringExtra("totalCosts").toString();
-       // Map<String,String> seatMap = (HashMap<String, String>)intent.getSerializableExtra("seatMap");
+        Map<String,String> seatMap = (Map<String, String>)intent.getSerializableExtra("seatMap");
+        String seatsName = "";
+
+        for (Map.Entry<String, String> entry : seatMap.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            if(value.equals("1")){
+                seatsName = seatsName + " " + key;
+            }
+
+        }
 
         busNameTextView = (TextView)findViewById(R.id.busFareID);
         fromTextView =(TextView)findViewById(R.id.fromID);
@@ -58,7 +68,7 @@ public class CanPayActivity extends AppCompatActivity {
         toTextView.setText(ToCity);
         journeyDateTextView.setText(JourneyDate);
         busConditionTextView.setText(BusCondition);
-        numberOfSeatsTextView.setText(numberOfSeats);
+        numberOfSeatsTextView.setText(seatsName + " (" +numberOfSeats+")");
         totalCostsTextView.setText(totalCosts);
 
 

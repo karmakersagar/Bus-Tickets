@@ -28,6 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -120,14 +121,19 @@ public class SeatChoose extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String seat = "A" + Integer.toString(position + 1);
+                if (seatMap.get(seat).equals("1")){
+                    seatMap.put(seat,"2");
+                }
                // if(seatMap.get(seat).equals("0")) {
                     if (isSelectSeat[position] == 0) {
-                        if (seatMap.get(seat).equals("1")) {
+                        if (seatMap.get(seat).equals("1") || seatMap.get(seat).equals("2") ) {
                             Toast.makeText(SeatChoose.this, "This seat is already booked! Please choose another one!!", Toast.LENGTH_SHORT).show();
                             view.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                            seatMap.put(seat,"2");
 
                         }
-                        else{
+
+                        else if(seatMap.get(seat).equals("0")){
                             view.setBackgroundColor(Color.parseColor("#00FF00"));
                             totalCost += seatPrice;
                             ++totalSeats;
@@ -158,7 +164,7 @@ public class SeatChoose extends AppCompatActivity {
                     if(totalSeats>=1){
 
                         Intent intentPay  = new Intent(getApplicationContext(),CanPayActivity.class);
-                       // intentPay.putExtra("seatMap", (Parcelable) seatMap);
+                        intentPay.putExtra("seatMap", (Serializable) seatMap);
                         intentPay.putExtra("fromCity",StartPoint);
                         intentPay.putExtra("toCity",EndPoint);
                         intentPay.putExtra("busName",BusName);
