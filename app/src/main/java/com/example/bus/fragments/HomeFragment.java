@@ -16,7 +16,6 @@ import android.widget.DatePicker;
 
 
 import com.example.bus.R;
-import com.example.bus.passSearchData;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -63,7 +62,7 @@ public class HomeFragment extends Fragment {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker datePicker, int year, int month, int date) {
-                                journeyDateEditText.setText(date+" - "+month+" - "+year);
+                                journeyDateEditText.setText(date+" - "+(month+1)+" - "+year);
                             }
                         },
                         journeyYear,

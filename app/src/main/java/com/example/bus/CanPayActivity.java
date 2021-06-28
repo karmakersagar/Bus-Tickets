@@ -44,7 +44,6 @@ public class CanPayActivity extends AppCompatActivity {
             if(value.equals("1")){
                 seatsName = seatsName + " " + key;
             }
-
         }
 
         busNameTextView = (TextView)findViewById(R.id.busFareID);
