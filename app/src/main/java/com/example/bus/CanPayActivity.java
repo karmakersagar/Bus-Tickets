@@ -6,12 +6,14 @@ import androidx.cardview.widget.CardView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,11 +24,14 @@ public class CanPayActivity extends AppCompatActivity {
     private CardView bKashCardView,rocketCardView,mCashCardView,nagadCardView;
     private LayoutInflater layoutInflater;
     private View view;
-    private String BusName,JourneyDate,BusCondition,FromCity, ToCity;
+    private String BusName,JourneyDate,BusCondition,FromCity, ToCity, totalCosts,numberOfSeats;
+    private String isSelected = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_can_pay);
+
+
         Intent intent = getIntent();
         BusName = intent.getStringExtra("busName").toString();
         JourneyDate = intent.getStringExtra("journeyDate").toString();
@@ -71,9 +76,8 @@ public class CanPayActivity extends AppCompatActivity {
         totalCostsTextView.setText(totalCosts);
 
 
-        view = layoutInflater.inflate(R.layout.payment_set,null);
-        EditText userNumber = view.findViewById(R.id.phoneNumberId);
-        EditText passWord = view.findViewById(R.id.passwordId);
+
+
 
         bKashCardView.setOnClickListener(this::onClick);
         nagadCardView.setOnClickListener(this::onClick);
@@ -84,27 +88,22 @@ public class CanPayActivity extends AppCompatActivity {
 
     }
 
+
+
+
     public void onClick(View v) {
 
         if(v.getId() == R.id.bkashCardViewId){
-            SetAlertDialogue("Bkash",R.drawable.bkash);
-//            bKashCardView.setCardBackgroundColor(Color.parseColor("#6495ED"));
-//            button.setVisibility(View.VISIBLE);
+            setCardView("Bkash",bKashCardView,R.drawable.bkash);
         }
         if(v.getId() == R.id.nagadCardViewId){
-            SetAlertDialogue("Nagad",R.drawable.nagad);
-//            nagadCardView.setCardBackgroundColor(Color.parseColor("#6495ED"));
-//            button.setVisibility(View.VISIBLE);
+            setCardView("Nagad",nagadCardView,R.drawable.nagad);
         }
         if(v.getId() == R.id.mCashCardViewId){
-            SetAlertDialogue("mCash",R.drawable.mcash);
-//            mCashCardView.setCardBackgroundColor(Color.parseColor("#6495ED"));
-//            button.setVisibility(View.VISIBLE);
+            setCardView("Mcash",mCashCardView,R.drawable.mcash);
         }
         if(v.getId() == R.id.rocketCardViewId){
-            SetAlertDialogue("Rocket",R.drawable.rocket);
-//            rocketCardView.setCardBackgroundColor(Color.parseColor("#6495ED"));
-//            button.setVisibility(View.VISIBLE);
+            setCardView("Rocket",rocketCardView,R.drawable.rocket);
         }
         if(v.getId() == R.id.payButtonId){
             Intent intent1 = new Intent(getApplicationContext(),BookingFinish.class);
@@ -116,7 +115,27 @@ public class CanPayActivity extends AppCompatActivity {
 
     }
 
+    private void setCardView(String Name, CardView cardView, int image) {
+
+        if(isSelected == null){
+            cardView.setCardBackgroundColor(Color.parseColor("#6495ED"));
+            isSelected = Name;
+            SetAlertDialogue(Name,image);
+        }else if(isSelected.equals(Name)){
+            cardView.setCardBackgroundColor(Color.parseColor("#FFFFFF"));
+            Toast.makeText(getApplicationContext(),"Unselected"+Name+"",Toast.LENGTH_SHORT).show();
+            isSelected = null;
+        }
+    }
+
+
     private void SetAlertDialogue(String name,int image){
+
+
+        view = layoutInflater.inflate(R.layout.payment_set,null,false);
+        EditText userNumber = view.findViewById(R.id.phoneNumberId);
+        EditText otp = view.findViewById(R.id.otpId);
+
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(CanPayActivity.this);
         alertDialogBuilder.setTitle(name);
         alertDialogBuilder.setIcon(image);
@@ -136,8 +155,6 @@ public class CanPayActivity extends AppCompatActivity {
         alertDialogBuilder.setView(view);
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
+
     }
-
-
-
 }

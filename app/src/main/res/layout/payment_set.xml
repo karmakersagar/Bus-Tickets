@@ -16,6 +16,7 @@
     android:fontFamily="monospace"
     android:inputType="number"
     android:id="@+id/phoneNumberId"
+
     />
     <EditText
         android:textColor="#ff22"
