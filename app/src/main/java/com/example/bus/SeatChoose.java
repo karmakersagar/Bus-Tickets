@@ -69,6 +69,10 @@ public class SeatChoose extends AppCompatActivity {
         String Type = intent.getStringExtra("type").toString();
         String journeyDate = intent.getStringExtra("journeyDate").toString();
         seatPrice =Double.parseDouble(Fare) ;
+
+
+
+
         databaseReference = firebaseDatabase.getInstance("https://buss-886c2-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("SeatDetails").child(busId).child(journeyDate);
 
         List<CustomGrid> list = new ArrayList<CustomGrid>();

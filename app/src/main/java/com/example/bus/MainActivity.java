@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent iin = getIntent();
         Bundle data = iin.getExtras();
-        if(data!=null){
+        if(data != null){
             String password = (String) data.get("Password");
             firebaseUser = firebaseAuth.getCurrentUser();
              userId = firebaseUser.getUid();

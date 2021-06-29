@@ -16,15 +16,17 @@
     android:fontFamily="monospace"
     android:inputType="number"
     android:id="@+id/phoneNumberId"
+
     />
     <EditText
         android:textColor="#ff22"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:hint="Password"
+        android:hint="OTP"
         android:inputType="number"
-        android:id="@+id/passwordId"
+        android:id="@+id/otpId"
         android:layout_margin="10dp"
+        android:fontFamily="monospace"
         />
 
 
