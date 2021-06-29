@@ -19,7 +19,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class BuslistActivity extends AppCompatActivity {
@@ -40,6 +42,9 @@ public class BuslistActivity extends AppCompatActivity {
     private CustomAdapter adapter;
     private ArrayList<CustomRowItem> list;
     private ValueEventListener valueEventListener;
+    Calendar calendar;
+    String currentDate, currentTime;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +55,17 @@ public class BuslistActivity extends AppCompatActivity {
         String FromLocation = intent.getStringExtra("fromLocation").toString();
         String ToLocation = intent.getStringExtra("toLocation").toString();
         String JourneyDate = intent.getStringExtra("journeyDate").toString();
+        calendar = Calendar.getInstance();
+        SimpleDateFormat currentDateFormat = new SimpleDateFormat("dd - M - yyyy");
+        currentDate = currentDateFormat.format(calendar.getTime());
+        SimpleDateFormat currentTimeFormat = new SimpleDateFormat("HH:mm");
+
+        currentTime = currentTimeFormat.format(calendar.getTime());
+        System.out.println(currentTime);
+        System.out.println(currentDate);
+        System.out.println(JourneyDate);
+
+
 
 
 
@@ -75,15 +91,36 @@ public class BuslistActivity extends AppCompatActivity {
                 if(snapshot.exists()) {
 
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                        busName = dataSnapshot.child("Bus Name").getValue(String.class);
-                        start = dataSnapshot.child("Starting Point").getValue(String.class);
-                        end = dataSnapshot.child("Ending Point").getValue(String.class);
-                        time = dataSnapshot.child("Time").getValue(String.class);
-                        fare = dataSnapshot.child("Fare").getValue(String.class);
-                        type = dataSnapshot.child("Type").getValue(String.class);
-                        busID = dataSnapshot.child("ID").getValue(String.class);
+                        if(currentDate.equals(JourneyDate)){
+                            time = dataSnapshot.child("Time").getValue(String.class);
+                            if(currentTime.compareTo(time)==0 || currentTime.compareTo(time)<0){
+                                busName = dataSnapshot.child("Bus Name").getValue(String.class);
+                                start = dataSnapshot.child("Starting Point").getValue(String.class);
+                                end = dataSnapshot.child("Ending Point").getValue(String.class);
+                               // time = dataSnapshot.child("Time").getValue(String.class);
+                                fare = dataSnapshot.child("Fare").getValue(String.class);
+                                type = dataSnapshot.child("Type").getValue(String.class);
+                                busID = dataSnapshot.child("ID").getValue(String.class);
 
-                        list.add(new CustomRowItem(busName, start, end, time, fare, type, busID, JourneyDate));
+                                list.add(new CustomRowItem(busName, start, end, time, fare, type, busID, JourneyDate));
+                            }
+
+                        }
+
+                        else{
+                            busName = dataSnapshot.child("Bus Name").getValue(String.class);
+                            start = dataSnapshot.child("Starting Point").getValue(String.class);
+                            end = dataSnapshot.child("Ending Point").getValue(String.class);
+                            time = dataSnapshot.child("Time").getValue(String.class);
+                            fare = dataSnapshot.child("Fare").getValue(String.class);
+                            type = dataSnapshot.child("Type").getValue(String.class);
+                            busID = dataSnapshot.child("ID").getValue(String.class);
+
+                            list.add(new CustomRowItem(busName, start, end, time, fare, type, busID, JourneyDate));
+                        }
+
+
+
 //                    CustomRowItem model = dataSnapshot.getValue(CustomRowItem.class);
 //                    list.add(model);
                     }
@@ -102,122 +139,5 @@ public class BuslistActivity extends AppCompatActivity {
         });
 
     }
-//    private RecyclerView recyclerView;
-//    private DatabaseReference databaseReference;
-//    CustomAdapter busAdapter;
-//    ArrayList<CustomRowItem> busList;
-//    private FirebaseAuth firebaseAuth;
-//
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_buslist);
-//
-////        String[] busesName = getResources().getStringArray(R.array.bus_name);
-////        String[] busesNumber = getResources().getStringArray(R.array.bus_number);
-////        String[] busesCondition = getResources().getStringArray(R.array.bus_codition);
-////        String[] busesFrom = getResources().getStringArray(R.array.from);
-////        String[] busesTo  = getResources().getStringArray(R.array.to);
-////        String[] busesJourneyDate = getResources().getStringArray(R.array.journey_date);
-//
-//        recyclerView = (RecyclerView) findViewById(R.id.recyclerId);
-//        recyclerView.setHasFixedSize(true);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        busList = new ArrayList<>();
-//
-//        busAdapter = new CustomAdapter(this, busList);
-//        recyclerView.setAdapter(busAdapter);
-//        firebaseAuth = FirebaseAuth.getInstance();
-//        databaseReference = FirebaseDatabase.getInstance("https://buss-886c2-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("BusDetails").child("Dhaka").child("Rajshahi");
-//        final String fromBus = getIntent().getStringExtra("fromLocation");
-//        final String toBus = getIntent().getStringExtra("toLocation");
-//        final String date = getIntent().getStringExtra("date");
-//
-//
-//        databaseReference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-//                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-//                    CustomRowItem model = dataSnapshot.getValue(CustomRowItem.class);
-//                    busList.add(model);
-//                }
-//                busAdapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull @NotNull DatabaseError error) {
-//
-//            }
-//        });
-
-
-//        databaseReference.child("Starting Point").equalTo("fromBus").addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-//                if(snapshot.exists()){
-//                    for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-//                        CustomRowItem busCustomRowItem = dataSnapshot.getValue(CustomRowItem.class);
-//                        busList.add(busCustomRowItem);
-//
-//                    }
-//
-//                    busAdapter.notifyDataSetChanged();
-//                }
-//
-//                databaseReference.child("Ending Point").equalTo("toBus").addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-//                        if(snapshot.exists()){
-//                            for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-//                                CustomRowItem busCustomRowItem = dataSnapshot.getValue(CustomRowItem.class);
-//                                busList.add(busCustomRowItem);
-//
-//                            }
-//
-//                            busAdapter.notifyDataSetChanged();
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
-//                        Toast.makeText(BuslistActivity.this, "Firebase Database Error", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull @NotNull DatabaseError error) {
-//                Toast.makeText(BuslistActivity.this, "Firebase Database Error", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//
-//
-//
-//
-//    }
-//
-//    ValueEventListener valueEventListener = new ValueEventListener() {
-//        @Override
-//        public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-//            if(snapshot.exists()){
-//                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-//                    CustomRowItem busCustomRowItem = dataSnapshot.getValue(CustomRowItem.class);
-//                    busList.add(busCustomRowItem);
-//
-//                }
-//
-//                busAdapter.notifyDataSetChanged();
-//            }
-//        }
-//
-//        @Override
-//        public void onCancelled(@NonNull @NotNull DatabaseError error) {
-//
-//        }
-//    };
 
 }
