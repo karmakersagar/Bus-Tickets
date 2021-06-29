@@ -221,16 +221,6 @@
                 </LinearLayout>
 
             </LinearLayout>
-
-
-
-
-
-
-
-
-
-        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -461,7 +451,8 @@
             android:id="@+id/payButtonId"
             android:layout_margin="20dp"
             android:layout_gravity="center"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="30dp"
+
             />
 
     </LinearLayout>

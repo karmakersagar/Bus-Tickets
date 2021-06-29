@@ -13,10 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,12 +23,6 @@ public class CanPayActivity extends AppCompatActivity {
     private LayoutInflater layoutInflater;
     private View view;
     private String BusName,JourneyDate,BusCondition,FromCity, ToCity;
-    private EditText userNumber;
-    private EditText passWord;
-    private FirebaseAuth auth;
-    private DatabaseReference databaseReference;
-    private FirebaseUser firebaseUser;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,8 +72,8 @@ public class CanPayActivity extends AppCompatActivity {
 
 
         view = layoutInflater.inflate(R.layout.payment_set,null);
-        userNumber = view.findViewById(R.id.phoneNumberId);
-        passWord = view.findViewById(R.id.passwordId);
+        EditText userNumber = view.findViewById(R.id.phoneNumberId);
+        EditText passWord = view.findViewById(R.id.passwordId);
 
         bKashCardView.setOnClickListener(this::onClick);
         nagadCardView.setOnClickListener(this::onClick);
@@ -121,10 +111,7 @@ public class CanPayActivity extends AppCompatActivity {
             intent1.putExtra("busName",BusName);
             intent1.putExtra("journeyDate",JourneyDate);
             intent1.putExtra("busCondition",BusCondition);
-            if (!userNumber.getText().toString().isEmpty()){
-                startActivity(intent1);
-            }
-
+            startActivity(intent1);
         }
 
     }
@@ -140,7 +127,7 @@ public class CanPayActivity extends AppCompatActivity {
                     }
                 });
 
-        alertDialogBuilder.setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setNegativeButton("Cancle",new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
