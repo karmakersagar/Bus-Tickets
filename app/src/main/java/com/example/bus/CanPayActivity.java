@@ -1,5 +1,6 @@
 package com.example.bus;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -15,6 +16,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.jetbrains.annotations.NotNull;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,8 +33,11 @@ public class CanPayActivity extends AppCompatActivity {
     private CardView bKashCardView,rocketCardView,mCashCardView,nagadCardView;
     private LayoutInflater layoutInflater;
     private View view;
-    private String BusName,JourneyDate,BusCondition,FromCity, ToCity, totalCosts,numberOfSeats;
+    private String BusName,JourneyDate,BusCondition,FromCity, ToCity, totalCosts,numberOfSeats,seatsName,busID ;
+    Map<String,String> seatMap;
     private String isSelected = null;
+    private FirebaseDatabase db;
+    private DatabaseReference root;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,16 +48,18 @@ public class CanPayActivity extends AppCompatActivity {
         BusCondition = intent.getStringExtra("busCondition").toString();
         FromCity = intent.getStringExtra("fromCity").toString();
         ToCity = intent.getStringExtra("toCity").toString();
-        String numberOfSeats = intent.getStringExtra("numberOfSeats").toString();
-        String totalCosts = intent.getStringExtra("totalCosts").toString();
-        Map<String,String> seatMap = (Map<String, String>)intent.getSerializableExtra("seatMap");
-        String seatsName = "";
+        busID = intent.getStringExtra("busID").toString();
+
+        numberOfSeats = intent.getStringExtra("numberOfSeats").toString();
+        totalCosts = intent.getStringExtra("totalCosts").toString();
+        seatMap = (Map<String, String>)intent.getSerializableExtra("seatMap");
+        seatsName = "";
 
         for (Map.Entry<String, String> entry : seatMap.entrySet()) {
             String key = entry.getKey();
             String value = entry.getValue();
             if(value.equals("1")){
-                seatsName = seatsName + " " + key;
+                seatsName = seatsName + "-->" + key;
             }
         }
 
@@ -73,10 +87,6 @@ public class CanPayActivity extends AppCompatActivity {
         numberOfSeatsTextView.setText(seatsName + " (" +numberOfSeats+")");
         totalCostsTextView.setText(totalCosts);
 
-
-
-
-
         bKashCardView.setOnClickListener(this::onClick);
         nagadCardView.setOnClickListener(this::onClick);
         rocketCardView.setOnClickListener(this::onClick);
@@ -85,8 +95,6 @@ public class CanPayActivity extends AppCompatActivity {
 
 
     }
-
-
 
 
     public void onClick(View v) {
@@ -105,10 +113,38 @@ public class CanPayActivity extends AppCompatActivity {
         }
         if(v.getId() == R.id.payButtonId){
             Intent intent1 = new Intent(getApplicationContext(),BookingFinish.class);
+            db = FirebaseDatabase.getInstance("https://buss-886c2-default-rtdb.asia-southeast1.firebasedatabase.app/");
+            root = db.getReference("SeatDetails").child(busID).child(JourneyDate);
             intent1.putExtra("busName",BusName);
             intent1.putExtra("journeyDate",JourneyDate);
             intent1.putExtra("busCondition",BusCondition);
+            root.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                    if(snapshot.exists()){
+                        int index;
+                        for(index = 1; index<=24; index++){
+                            String seatIndex = "A"+index;
+                            if(seatMap.get(seatIndex).equals("1")){
+                                root.child(seatIndex).setValue("1");
+                            }
+                        }
+                    }
+                    else{
+
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                }
+            });
+            intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent1);
+
         }
 
     }
