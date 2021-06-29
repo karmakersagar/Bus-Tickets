@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -50,17 +51,13 @@ public class SeatChoose extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seat_choose);
 
-
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
 
         gridView = (GridView)findViewById(R.id.gridViewId);
         button = (Button)findViewById(R.id.confirm_buttonId);
         selectedSeatsTextView = (TextView)findViewById(R.id.select_seat_TextViewId);
         totalCostTextView = (TextView)findViewById(R.id.total_cost_TextViewId);
         auth = FirebaseAuth.getInstance();
-
-
 
         Intent intent = getIntent();
         String busId = intent.getStringExtra("busID").toString();
@@ -87,6 +84,7 @@ public class SeatChoose extends AppCompatActivity {
                     for(index = 1; index<=24; index++){
                         String a = snapshot.child("A"+index).getValue(String.class);
                         String index1 = Integer.toString(index);
+                        Log.d("ABC","Hello"+ a);
                         if(a.equals("1")){
                             list.add(new CustomGrid(R.drawable.seat_booked,"A"+index1));
                             seatMap.put("A"+index,"100");
@@ -162,6 +160,7 @@ public class SeatChoose extends AppCompatActivity {
 
                         Intent intentPay  = new Intent(getApplicationContext(),CanPayActivity.class);
                         intentPay.putExtra("seatMap", (Serializable) seatMap);
+                        intentPay.putExtra("busID",busId);
                         intentPay.putExtra("fromCity",StartPoint);
                         intentPay.putExtra("toCity",EndPoint);
                         intentPay.putExtra("busName",BusName);

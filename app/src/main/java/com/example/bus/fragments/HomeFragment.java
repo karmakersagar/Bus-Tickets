@@ -62,7 +62,7 @@ public class HomeFragment extends Fragment {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker datePicker, int year, int month, int date) {
-                                journeyDateEditText.setText(date+" - "+(month+1)+" - "+year);
+                                journeyDateEditText.setText(date+" - "+month+" - "+year);
                             }
                         },
                         journeyYear,
