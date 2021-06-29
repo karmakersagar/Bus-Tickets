@@ -30,8 +30,6 @@ public class CanPayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_can_pay);
-
-
         Intent intent = getIntent();
         BusName = intent.getStringExtra("busName").toString();
         JourneyDate = intent.getStringExtra("journeyDate").toString();
