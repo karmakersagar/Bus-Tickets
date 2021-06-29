@@ -131,7 +131,28 @@ public class CanPayActivity extends AppCompatActivity {
                         }
                     }
                     else{
-
+//                        root.addValueEventListener(new ValueEventListener() {
+//                            @Override
+//                            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+//                                int index;
+//                                for(index=1;index<=24;index++){
+//                                    String seatIndex = "A"+index;
+//                                    if(seatMap.get(seatIndex).equals("1")){
+//                                        root.child(seatIndex).setValue("1");
+//                                    }
+//                                    else{
+//                                        root.child(seatIndex).setValue("0");
+//                                    }
+//
+//                                }
+//                            }
+//
+//                            @Override
+//                            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+//
+//                            }
+//                        });
+//
                     }
 
                 }
