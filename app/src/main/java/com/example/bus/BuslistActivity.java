@@ -61,9 +61,9 @@ public class BuslistActivity extends AppCompatActivity {
         SimpleDateFormat currentTimeFormat = new SimpleDateFormat("HH:mm");
 
         currentTime = currentTimeFormat.format(calendar.getTime());
-        System.out.println(currentTime);
-        System.out.println(currentDate);
-        System.out.println(JourneyDate);
+//        System.out.println(currentTime);
+//        System.out.println(currentDate);
+//        System.out.println(JourneyDate);
 
 
 
@@ -78,10 +78,8 @@ public class BuslistActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         list = new ArrayList<CustomRowItem>();
         adapter = new CustomAdapter(this, list);
-
         recyclerView.setAdapter(adapter);
 
         root.addValueEventListener(new ValueEventListener() {
@@ -101,7 +99,6 @@ public class BuslistActivity extends AppCompatActivity {
                                 fare = dataSnapshot.child("Fare").getValue(String.class);
                                 type = dataSnapshot.child("Type").getValue(String.class);
                                 busID = dataSnapshot.child("ID").getValue(String.class);
-
                                 list.add(new CustomRowItem(busName, start, end, time, fare, type, busID, JourneyDate));
                             }
 
@@ -115,7 +112,6 @@ public class BuslistActivity extends AppCompatActivity {
                             fare = dataSnapshot.child("Fare").getValue(String.class);
                             type = dataSnapshot.child("Type").getValue(String.class);
                             busID = dataSnapshot.child("ID").getValue(String.class);
-
                             list.add(new CustomRowItem(busName, start, end, time, fare, type, busID, JourneyDate));
                         }
 

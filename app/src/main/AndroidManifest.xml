@@ -11,7 +11,9 @@
         android:roundIcon="@drawable/bus_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.Bus">
-        <activity android:name=".BookingFinish"></activity>
+        <activity android:name=".TicketDetailsActivity"></activity>
+        <activity android:name=".TicketActivity" />
+        <activity android:name=".BookingFinish" />
         <activity android:name=".CanPayActivity" />
         <activity android:name=".SeatChoose" />
         <activity android:name=".BuslistActivity" />
@@ -23,7 +25,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".Notifications" />
-        <activity android:name=".ProfileActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity" />
