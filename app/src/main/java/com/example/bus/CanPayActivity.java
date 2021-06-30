@@ -27,6 +27,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,8 +39,9 @@ public class CanPayActivity extends AppCompatActivity {
     private CardView bKashCardView,rocketCardView,mCashCardView,nagadCardView;
     private LayoutInflater layoutInflater;
     private View view;
-    private String BusName,JourneyDate,BusCondition,FromCity, ToCity, totalCosts,numberOfSeats,seatsName,busID ;
+    private String BusName,JourneyDate,BusCondition,FromCity, ToCity, totalCosts,numberOfSeats,seatsName,busID ,time,fare,issueDate,issueTime ;
     Map<String,String> seatMap;
+
     private String isSelected = null;
     private FirebaseDatabase db;
     private DatabaseReference root;
@@ -52,17 +56,19 @@ public class CanPayActivity extends AppCompatActivity {
         FromCity = intent.getStringExtra("fromCity").toString();
         ToCity = intent.getStringExtra("toCity").toString();
         busID = intent.getStringExtra("busID").toString();
-
+        time = intent.getStringExtra("time").toString();
+        fare = intent.getStringExtra("Fare".toString());
         numberOfSeats = intent.getStringExtra("numberOfSeats").toString();
         totalCosts = intent.getStringExtra("totalCosts").toString();
         seatMap = (Map<String, String>)intent.getSerializableExtra("seatMap");
         seatsName = "";
 
+
         for (Map.Entry<String, String> entry : seatMap.entrySet()) {
             String key = entry.getKey();
             String value = entry.getValue();
             if(value.equals("1")){
-                seatsName = seatsName + "-->" + key;
+                seatsName = seatsName + " " + key;
             }
         }
 
@@ -81,6 +87,7 @@ public class CanPayActivity extends AppCompatActivity {
         nagadCardView = (CardView)findViewById(R.id.nagadCardViewId);
 
 
+
         layoutInflater = LayoutInflater.from(getApplicationContext());
         busNameTextView.setText(BusName);
         fromTextView.setText(FromCity);
@@ -89,6 +96,7 @@ public class CanPayActivity extends AppCompatActivity {
         busConditionTextView.setText(BusCondition);
         numberOfSeatsTextView.setText(seatsName + " (" +numberOfSeats+")");
         totalCostsTextView.setText(totalCosts);
+
 
         bKashCardView.setOnClickListener(this::onClick);
         nagadCardView.setOnClickListener(this::onClick);
@@ -119,8 +127,15 @@ public class CanPayActivity extends AppCompatActivity {
             db = FirebaseDatabase.getInstance("https://buss-886c2-default-rtdb.asia-southeast1.firebasedatabase.app/");
             root = db.getReference("SeatDetails").child(busID).child(JourneyDate);
             intent1.putExtra("busName",BusName);
+            intent1.putExtra("from",FromCity);
+            intent1.putExtra("to",ToCity);
             intent1.putExtra("journeyDate",JourneyDate);
+            intent1.putExtra("Fare",fare);
+            intent1.putExtra("seatName",seatsName);
+            intent1.putExtra("time",time);
             intent1.putExtra("busCondition",BusCondition);
+            //intent1.putExtra("isuueDate",issueDate);
+           // intent1.putExtra("issueTime",issueTime);
             root.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {

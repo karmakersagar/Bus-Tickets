@@ -169,6 +169,8 @@ public class SeatChoose extends AppCompatActivity {
                         intentPay.putExtra("toCity",EndPoint);
                         intentPay.putExtra("busName",BusName);
                         intentPay.putExtra("journeyDate",journeyDate);
+                        intentPay.putExtra("Fare",String.valueOf(totalCost));
+                        intentPay.putExtra("time",Time);
                         intentPay.putExtra("busCondition",Type);
                         intentPay.putExtra("numberOfSeats",Integer.toString(totalSeats));
                         intentPay.putExtra("totalCosts",Double.toString(totalCost));
