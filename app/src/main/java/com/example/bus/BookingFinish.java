@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bus.fragments.HomeFragment;
@@ -29,6 +30,7 @@ public class BookingFinish extends AppCompatActivity {
     private Button homeButton;
 
     String busNam,fromCity,toCity,fare,seatsName,time,busCondition,issueDate,issueTime,journeyDate,userId;
+    private TextView busNameTextView, journeyDateTextView, ticketIDTextView;
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -49,23 +51,23 @@ public class BookingFinish extends AppCompatActivity {
          fromCity = intentTickets.getStringExtra("from").toString();
          toCity = intentTickets.getStringExtra("to").toString();
          journeyDate = intentTickets.getStringExtra("journeyDate").toString();
-        fare = intentTickets.getStringExtra("Fare").toString();
+         fare = intentTickets.getStringExtra("Fare").toString();
          time = intentTickets.getStringExtra("time").toString();
          busCondition = intentTickets.getStringExtra("busCondition").toString();
          seatsName = intentTickets.getStringExtra("seatName").toString();
          firebaseAuth = FirebaseAuth.getInstance();
          userId = firebaseAuth.getCurrentUser().getUid();
 
-        System.out.println(busNam);
-        System.out.println(fromCity);
-        System.out.println(toCity);
-        System.out.println(fare);
-        System.out.println(journeyDate);
-        System.out.println(time);
-        System.out.println(busCondition);
-        System.out.println(seatsName);
-        System.out.println(issueDate);
-        System.out.println(issueTime);
+//        System.out.println(busNam);
+//        System.out.println(fromCity);
+//        System.out.println(toCity);
+//        System.out.println(fare);
+//        System.out.println(journeyDate);
+//        System.out.println(time);
+//        System.out.println(busCondition);
+//        System.out.println(seatsName);
+//        System.out.println(issueDate);
+//        System.out.println(issueTime);
         ticketDetailsMap.put("busName",busNam);
         ticketDetailsMap.put("from",fromCity);
         ticketDetailsMap.put("to",toCity);
@@ -77,8 +79,14 @@ public class BookingFinish extends AppCompatActivity {
         ticketDetailsMap.put("issueDate",issueDate);
         ticketDetailsMap.put("issueTime",issueTime);
 
+        busNameTextView = findViewById(R.id.busName);
+        journeyDateTextView = findViewById(R.id.busJourneyDateId);
+        ticketIDTextView = findViewById(R.id.ticketID);
+
         databaseReference = FirebaseDatabase.getInstance("https://buss-886c2-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("users").child(userId).child("Tickets");
-        databaseReference.push().setValue(ticketDetailsMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+        String key = databaseReference.push().getKey();
+        ticketDetailsMap.put("ticketID",key);
+        databaseReference.child(key).setValue(ticketDetailsMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull @NotNull Task<Void> task) {
                 Toast.makeText(BookingFinish.this, "Tickets database Created ", Toast.LENGTH_SHORT).show();
@@ -89,6 +97,10 @@ public class BookingFinish extends AppCompatActivity {
                 Toast.makeText(BookingFinish.this, "Tickets Database creation failed ", Toast.LENGTH_SHORT).show();
             }
         });
+
+        busNameTextView.setText(busNam);
+        journeyDateTextView.setText(journeyDate);
+        ticketIDTextView.setText(key);
 
         homeButton = findViewById(R.id.homeButtonId);
         homeButton.setOnClickListener(new View.OnClickListener() {

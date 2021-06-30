@@ -8,41 +8,98 @@
     tools:context=".BookingFinish"
     android:background="#C9EFF4"
     >
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Bus Name : "
-        android:id="@+id/busFareID"
-        android:layout_marginTop="40dp"
-        android:textColor="@color/black"
-        android:gravity="center"
-        android:fontFamily="cursive"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Journey Date : "
-        android:gravity="center"
-        android:id="@+id/busJourneyDateId"
-        android:textSize="19sp"
-        android:fontFamily="monospace"
-        android:textColor="@color/black"
+        android:orientation="horizontal"
+        >
 
-        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bus Name : "
+            android:layout_marginTop="40dp"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:fontFamily="cursive"
+            android:layout_marginLeft="30dp"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Bus_Name"
+            android:id="@+id/busName"
+            android:layout_marginTop="40dp"
+            android:textColor="@color/black"
+            android:textSize="25sp"
 
-    <TextView
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Bus Condition"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:fontFamily="monospace"
-        />
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Journey Date : "
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:fontFamily="cursive"
+            android:layout_marginLeft="30dp"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Date"
+            android:id="@+id/busJourneyDateId"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ticket ID : "
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:fontFamily="cursive"
+            android:layout_marginLeft="30dp"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ticket_ID"
+            android:id="@+id/ticketID"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            android:autoSizeTextType="uniform"
+            android:singleLine="true"
+            />
+    </LinearLayout>
+
 
     <ImageView
         android:layout_width="match_parent"
@@ -54,9 +111,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/successfull_book"
+        android:text="Successfully Booked! For Details, Please Visit Ticket Section"
         android:textStyle="bold"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:gravity="center"
         android:padding="10dp"
         android:layout_marginTop="20sp"

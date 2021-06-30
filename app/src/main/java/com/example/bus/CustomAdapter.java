@@ -88,8 +88,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             intent.putExtra("journeyDate",journeyDate);
 
             context.startActivity(intent);
-//
-//        }
+
     }
 
 
