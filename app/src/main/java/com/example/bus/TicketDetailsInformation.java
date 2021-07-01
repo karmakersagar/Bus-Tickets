@@ -20,7 +20,7 @@ public class TicketDetailsInformation {
         this.ticketID = ticketID;
     }
 
-    public String getCost() {
+    public String getCost(){
         return cost;
     }
 
