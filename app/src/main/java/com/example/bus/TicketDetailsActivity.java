@@ -31,6 +31,9 @@ public class TicketDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ticket_details);
         Intent intent = getIntent();
         String ticketID = intent.getStringExtra("ticketID").toString();
+        String issueTime = intent.getStringExtra("issueTime").toString();
+
+
 
         passengerNameTV  = findViewById(R.id.passengerNameTicket);
         mobileTV = findViewById(R.id.mobileNumberTicket);
@@ -75,9 +78,9 @@ public class TicketDetailsActivity extends AppCompatActivity {
                 toTV.setText(ticketDetailsInformation.getTo());
                 journeyDateTV.setText(ticketDetailsInformation.getJourneyDate());
                 busConditionTV.setText(ticketDetailsInformation.getBusCondition());
-                seatTV.setText(ticketDetailsInformation.getSeat());
+                seatTV.setText(ticketDetailsInformation.getSeats());
                 timeTV.setText(ticketDetailsInformation.getTime());
-                costTV.setText(ticketDetailsInformation.getCost());
+                costTV.setText(ticketDetailsInformation.getTotalCost());
                 ticketIDTV.setText(ticketDetailsInformation.getTicketID());
             }
 

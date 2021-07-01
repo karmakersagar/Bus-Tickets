@@ -1,31 +1,30 @@
 package com.example.bus;
 
 public class TicketDetailsInformation {
-    String busName, from, to, journeyDate, busCondition, seat, time, cost, ticketID;
-
+    String busName, from, to, journeyDate, busCondition, seats, time, TotalCost, ticketID;
 
     public TicketDetailsInformation() {
     }
 
-    public TicketDetailsInformation( String busName, String from, String to, String journeyDate, String busCondition, String seat, String time, String cost,String ticketID) {
+    public TicketDetailsInformation( String busName, String from, String to, String journeyDate, String busCondition, String seat, String time, String cost, String ticketID) {
 
         this.busName = busName;
         this.from = from;
         this.to = to;
         this.journeyDate = journeyDate;
         this.busCondition = busCondition;
-        this.seat = seat;
+        this.seats = seats;
         this.time = time;
-        this.cost = cost;
+        this.TotalCost = TotalCost;
         this.ticketID = ticketID;
     }
 
-    public String getCost(){
-        return cost;
+    public String getTotalCost() {
+        return TotalCost;
     }
 
     public void setCost(String cost) {
-        this.cost = cost;
+        this.TotalCost = TotalCost;
     }
 
     public String getBusName() {
@@ -68,12 +67,12 @@ public class TicketDetailsInformation {
         this.busCondition = busCondition;
     }
 
-    public String getSeat() {
-        return seat;
+    public String getSeats() {
+        return seats;
     }
 
     public void setSeat(String seat) {
-        this.seat = seat;
+        this.seats = seats;
     }
 
     public String getTime() {

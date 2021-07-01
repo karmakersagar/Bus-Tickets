@@ -1,0 +1,139 @@
+Index: app/src/main/java/com/example/bus/CanPayActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.bus;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.Nullable;\r\nimport androidx.appcompat.app.AlertDialog;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.cardview.widget.CardView;\r\n\r\nimport android.content.DialogInterface;\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.widget.TextView;\r\n\r\nimport com.google.firebase.auth.FirebaseAuth;\r\nimport com.google.firebase.auth.FirebaseUser;\r\nimport com.google.firebase.database.ChildEventListener;\r\nimport com.google.firebase.database.DataSnapshot;\r\nimport com.google.firebase.database.DatabaseError;\r\nimport com.google.firebase.database.DatabaseReference;\r\nimport com.google.firebase.database.FirebaseDatabase;\r\nimport com.google.firebase.database.ValueEventListener;\r\n\r\nimport org.jetbrains.annotations.NotNull;\r\n\r\nimport java.util.HashMap;\r\nimport java.util.Map;\r\n\r\npublic class CanPayActivity extends AppCompatActivity {\r\n    private TextView busNameTextView,journeyDateTextView,busConditionTextView,numberOfSeatsTextView,totalCostsTextView,fromTextView,toTextView;\r\n    private Button button;\r\n    private CardView bKashCardView,rocketCardView,mCashCardView,nagadCardView;\r\n    private LayoutInflater layoutInflater;\r\n    private View view;\r\n    private String BusName,JourneyDate,BusCondition,FromCity, ToCity,BusID,numberOfSeats,totalCosts;\r\n    private EditText userNumber;\r\n    private EditText passWord;\r\n    private FirebaseAuth auth;\r\n    private FirebaseDatabase firebaseDatabase;\r\n    private FirebaseDatabase databaseReference;\r\n    private FirebaseUser firebaseUser;\r\n    private FirebaseDatabase db;\r\n    private DatabaseReference root;\r\n    Map<String,String> seatMap;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_can_pay);\r\n        Intent intent = getIntent();\r\n        BusName = intent.getStringExtra(\"busName\").toString();\r\n        JourneyDate = intent.getStringExtra(\"journeyDate\").toString();\r\n        BusCondition = intent.getStringExtra(\"busCondition\").toString();\r\n        FromCity = intent.getStringExtra(\"fromCity\").toString();\r\n        ToCity = intent.getStringExtra(\"toCity\").toString();\r\n        BusID = intent.getStringExtra(\"busID\").toString();\r\n        numberOfSeats = intent.getStringExtra(\"numberOfSeats\").toString();\r\n        totalCosts = intent.getStringExtra(\"totalCosts\").toString();\r\n        seatMap = (Map<String, String>)intent.getSerializableExtra(\"seatMap\");\r\n        String seatsName = \"\";\r\n\r\n        for (Map.Entry<String, String> entry : seatMap.entrySet()) {\r\n            String key = entry.getKey();\r\n            String value = entry.getValue();\r\n            if(value.equals(\"1\")){\r\n                seatsName = seatsName + \" \" + key;\r\n            }\r\n        }\r\n\r\n        busNameTextView = (TextView)findViewById(R.id.busFareID);\r\n        fromTextView =(TextView)findViewById(R.id.fromID);\r\n        toTextView = (TextView)findViewById(R.id.toID);\r\n        journeyDateTextView = (TextView)findViewById(R.id.busJourneyDateId);\r\n        busConditionTextView = (TextView)findViewById(R.id.busConditionId);\r\n        numberOfSeatsTextView = (TextView)findViewById(R.id.totalSeatId);\r\n        totalCostsTextView = (TextView)findViewById(R.id.totalCostId);\r\n        button = (Button)findViewById(R.id.payButtonId);\r\n\r\n        bKashCardView = (CardView)findViewById(R.id.bkashCardViewId);\r\n        mCashCardView = (CardView)findViewById(R.id.mCashCardViewId);\r\n        rocketCardView = (CardView)findViewById(R.id.rocketCardViewId);\r\n        nagadCardView = (CardView)findViewById(R.id.nagadCardViewId);\r\n\r\n\r\n        layoutInflater = LayoutInflater.from(getApplicationContext());\r\n        busNameTextView.setText(BusName);\r\n        fromTextView.setText(FromCity);\r\n        toTextView.setText(ToCity);\r\n        journeyDateTextView.setText(JourneyDate);\r\n        busConditionTextView.setText(BusCondition);\r\n        numberOfSeatsTextView.setText(seatsName + \" (\" +numberOfSeats+\")\");\r\n        totalCostsTextView.setText(totalCosts);\r\n\r\n\r\n        view = layoutInflater.inflate(R.layout.payment_set,null);\r\n        userNumber = view.findViewById(R.id.phoneNumberId);\r\n        passWord = view.findViewById(R.id.passwordId);\r\n\r\n        bKashCardView.setOnClickListener(this::onClick);\r\n        nagadCardView.setOnClickListener(this::onClick);\r\n        rocketCardView.setOnClickListener(this::onClick);\r\n        mCashCardView.setOnClickListener(this::onClick);\r\n        button.setOnClickListener(this::onClick);\r\n\r\n    }\r\n\r\n\r\n    public void onClick(View v) {\r\n\r\n        if(v.getId() == R.id.bkashCardViewId){\r\n            SetAlertDialogue(\"Bkash\",R.drawable.bkash);\r\n//            bKashCardView.setCardBackgroundColor(Color.parseColor(\"#6495ED\"));\r\n//            button.setVisibility(View.VISIBLE);\r\n        }\r\n        if(v.getId() == R.id.nagadCardViewId){\r\n            SetAlertDialogue(\"Nagad\",R.drawable.nagad);\r\n//            nagadCardView.setCardBackgroundColor(Color.parseColor(\"#6495ED\"));\r\n//            button.setVisibility(View.VISIBLE);\r\n        }\r\n        if(v.getId() == R.id.mCashCardViewId){\r\n            SetAlertDialogue(\"mCash\",R.drawable.mcash);\r\n//            mCashCardView.setCardBackgroundColor(Color.parseColor(\"#6495ED\"));\r\n//            button.setVisibility(View.VISIBLE);\r\n        }\r\n        if(v.getId() == R.id.rocketCardViewId){\r\n            SetAlertDialogue(\"Rocket\",R.drawable.rocket);\r\n//            rocketCardView.setCardBackgroundColor(Color.parseColor(\"#6495ED\"));\r\n//            button.setVisibility(View.VISIBLE);\r\n        }\r\n        if(v.getId() == R.id.payButtonId){\r\n            Intent intent1 = new Intent(getApplicationContext(),BookingFinish.class);\r\n            intent1.putExtra(\"busName\",BusName);\r\n            intent1.putExtra(\"journeyDate\",JourneyDate);\r\n            intent1.putExtra(\"busCondition\",BusCondition);\r\n            db = FirebaseDatabase.getInstance(\"https://buss-886c2-default-rtdb.asia-southeast1.firebasedatabase.app/\");\r\n            root = db.getReference(\"SeatDetails\").child(BusID).child(JourneyDate);\r\n            root.addValueEventListener(new ValueEventListener() {\r\n                @Override\r\n                public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {\r\n                    if(snapshot.exists()){\r\n                        int index;\r\n                        for (index = 1; index <= 24; index++) {\r\n                            String seatIndex = \"A\" + index;\r\n                            if (seatMap.get(seatIndex).equals(\"1\")) {\r\n                                root.child(seatIndex).setValue(\"1\");\r\n                            }\r\n                        }\r\n                    }\r\n                    else{\r\n                        root.addValueEventListener(new ValueEventListener() {\r\n                            @Override\r\n                            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {\r\n                                int index;\r\n                                for (index = 1; index <= 24; index++) {\r\n                                    String seatIndex = \"A\" + index;\r\n                                    if (seatMap.get(seatIndex).equals(\"1\")){\r\n                                        root.child(seatIndex).setValue(\"1\");\r\n\r\n                                    }\r\n                                    else {\r\n                                        root.child(seatIndex).setValue(\"0\");\r\n\r\n                                    }\r\n                                }\r\n                            }\r\n\r\n                            @Override\r\n                            public void onCancelled(@NonNull @NotNull DatabaseError error) {\r\n\r\n                            }\r\n                        });\r\n//                        int index;\r\n//                        for (index = 1; index <= 24; index++) {\r\n//                            String seatIndex = \"A\" + index;\r\n//                            if (seatMap.get(seatIndex).equals(\"1\")){\r\n//                                root.child(seatIndex).setValue(\"1\");\r\n//                            } else {\r\n//                                root.child(seatIndex).setValue(\"0\");\r\n//                            }\r\n//                        }\r\n                    }\r\n\r\n                }\r\n\r\n                @Override\r\n                public void onCancelled(@NonNull @NotNull DatabaseError error) {\r\n\r\n                }\r\n            });\r\n\r\n\r\n            startActivity(intent1);\r\n\r\n            }\r\n\r\n\r\n    }\r\n\r\n\r\n    private void SetAlertDialogue(String name,int image){\r\n        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(CanPayActivity.this);\r\n        alertDialogBuilder.setTitle(name);\r\n        alertDialogBuilder.setIcon(image);\r\n        alertDialogBuilder.setPositiveButton(\"Confirm\",\r\n                new DialogInterface.OnClickListener() {\r\n                    @Override\r\n                    public void onClick(DialogInterface arg0, int arg1) {\r\n                    }\r\n                });\r\n\r\n        alertDialogBuilder.setNegativeButton(\"Cancel\",new DialogInterface.OnClickListener() {\r\n            @Override\r\n            public void onClick(DialogInterface dialog, int which) {\r\n                dialog.cancel();\r\n            }\r\n        });\r\n        alertDialogBuilder.setView(view);\r\n        AlertDialog alertDialog = alertDialogBuilder.create();\r\n        alertDialog.show();\r\n    }\r\n\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/bus/CanPayActivity.java	(revision 016deb4eea04c96a2c9dff5b37cf296f3788da39)
++++ app/src/main/java/com/example/bus/CanPayActivity.java	(date 1625004721965)
+@@ -135,69 +135,60 @@
+             intent1.putExtra("busName",BusName);
+             intent1.putExtra("journeyDate",JourneyDate);
+             intent1.putExtra("busCondition",BusCondition);
+-            db = FirebaseDatabase.getInstance("https://buss-886c2-default-rtdb.asia-southeast1.firebasedatabase.app/");
+-            root = db.getReference("SeatDetails").child(BusID).child(JourneyDate);
+-            root.addValueEventListener(new ValueEventListener() {
+-                @Override
+-                public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+-                    if(snapshot.exists()){
+-                        int index;
+-                        for (index = 1; index <= 24; index++) {
+-                            String seatIndex = "A" + index;
+-                            if (seatMap.get(seatIndex).equals("1")) {
+-                                root.child(seatIndex).setValue("1");
+-                            }
+-                        }
+-                    }
+-                    else{
+-                        root.addValueEventListener(new ValueEventListener() {
+-                            @Override
+-                            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+-                                int index;
+-                                for (index = 1; index <= 24; index++) {
+-                                    String seatIndex = "A" + index;
+-                                    if (seatMap.get(seatIndex).equals("1")){
+-                                        root.child(seatIndex).setValue("1");
+-
+-                                    }
+-                                    else {
+-                                        root.child(seatIndex).setValue("0");
+-
+-                                    }
+-                                }
+-                            }
+-
+-                            @Override
+-                            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+-
+-                            }
+-                        });
++//            db = FirebaseDatabase.getInstance("https://buss-886c2-default-rtdb.asia-southeast1.firebasedatabase.app/");
++//            root = db.getReference("SeatDetails").child(BusID).child(JourneyDate);
++//            root.addValueEventListener(new ValueEventListener() {
++//                @Override
++//                public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
++//                    if(snapshot.exists()){
+ //                        int index;
+ //                        for (index = 1; index <= 24; index++) {
+ //                            String seatIndex = "A" + index;
+-//                            if (seatMap.get(seatIndex).equals("1")){
++//                            if (seatMap.get(seatIndex).equals("1")) {
+ //                                root.child(seatIndex).setValue("1");
+-//                            } else {
+-//                                root.child(seatIndex).setValue("0");
++//                            }
++//                        }
++//                    }
++//                    else{
++//                        root.addValueEventListener(new ValueEventListener() {
++//                            @Override
++//                            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
++//                                int index;
++//                                for (index = 1; index <= 24; index++) {
++//                                    String seatIndex = "A" + index;
++//                                    if (seatMap.get(seatIndex).equals("1")){
++//                                        root.child(seatIndex).setValue("1");
++//
++//                                    }
++//                                    else {
++//                                        root.child(seatIndex).setValue("0");
++//
++//                                    }
++//                                }
+ //                            }
+-//                        }
+-                    }
+-
+-                }
+-
+-                @Override
+-                public void onCancelled(@NonNull @NotNull DatabaseError error) {
+-
+-                }
+-            });
+-
++//
++//                            @Override
++//                            public void onCancelled(@NonNull @NotNull DatabaseError error) {
++//
++//                            }
++//                        });
++////
++//                    }
++//
++//                }
++//
++//                @Override
++//                public void onCancelled(@NonNull @NotNull DatabaseError error) {
++//
++//                }
++//            });
+ 
+             startActivity(intent1);
+ 
+             }
+ 
+ 
+-    }
++  }
+ 
+ 
+     private void SetAlertDialogue(String name,int image){
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"VcsDirectoryMappings\">\r\n    <mapping directory=\"\" vcs=\"Git\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/vcs.xml	(revision 016deb4eea04c96a2c9dff5b37cf296f3788da39)
++++ .idea/vcs.xml	(date 1625006152028)
+@@ -2,5 +2,6 @@
+ <project version="4">
+   <component name="VcsDirectoryMappings">
+     <mapping directory="" vcs="Git" />
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+   </component>
+ </project>
+\ No newline at end of file

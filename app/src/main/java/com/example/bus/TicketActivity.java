@@ -39,7 +39,10 @@ public class TicketActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.ticketRecyclerView);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
         list = new ArrayList<TicketActivityItem>();
         adapter = new TicketActivityAdapter(this, list);
         recyclerView.setAdapter(adapter);

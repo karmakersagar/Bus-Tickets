@@ -69,6 +69,8 @@ public class TicketActivityAdapter extends RecyclerView.Adapter<TicketActivityAd
             int position = getAdapterPosition();
             Intent intent = new Intent(context,TicketDetailsActivity.class);
             String ticketid = ticketList.get(position).getTicketID();
+            String issuetime = ticketList.get(position).getIssueTime();
+            intent.putExtra("issueTime",issuetime);
             intent.putExtra("ticketID",ticketid);
             context.startActivity(intent);
         }

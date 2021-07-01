@@ -1,0 +1,54 @@
+Index: app/src/main/java/com/example/bus/SeatChoose.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.bus;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.graphics.Color;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.view.WindowManager;\r\nimport android.widget.AdapterView;\r\nimport android.widget.Button;\r\nimport android.widget.GridView;\r\nimport android.widget.TextView;\r\nimport android.widget.Toast;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic class SeatChoose extends AppCompatActivity {\r\n    private GridView gridView;\r\n    private Button button;\r\n    private TextView selectedSeatsTextView,totalCostTextView;\r\n    Double seatPrice ;\r\n    Double totalCost = 0.0;\r\n    int totalSeats = 0;\r\n    int[] isSelectSeat = new int[25];\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_seat_choose);\r\n\r\n\r\n        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);\r\n\r\n\r\n        gridView = (GridView)findViewById(R.id.gridViewId);\r\n        button = (Button)findViewById(R.id.confirm_buttonId);\r\n        selectedSeatsTextView = (TextView)findViewById(R.id.select_seat_TextViewId);\r\n        totalCostTextView = (TextView)findViewById(R.id.total_cost_TextViewId);\r\n\r\n\r\n        Intent intent = getIntent();\r\n        String BusName = intent.getStringExtra(\"busName\").toString();\r\n        String StartPoint = intent.getStringExtra(\"start\").toString();\r\n        String EndPoint = intent.getStringExtra(\"end\").toString();\r\n        String Time = intent.getStringExtra(\"time\").toString();\r\n        String Fare =intent.getStringExtra(\"fare\").toString();\r\n        String Type = intent.getStringExtra(\"type\").toString();\r\n        String journeyDate = intent.getStringExtra(\"journeyDate\").toString();\r\n        seatPrice =Double.parseDouble(Fare) ;\r\n\r\n        List<CustomGrid> list = new ArrayList<CustomGrid>();\r\n\r\n        for(int i = 1 ; i <= 24 ; i++){\r\n            list.add(new CustomGrid(R.drawable.seat,\"A\"+i));\r\n        }\r\n\r\n        CustomAdapterGrid adapter = new CustomAdapterGrid(SeatChoose.this,list);\r\n        gridView.setAdapter(adapter);\r\n\r\n        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {\r\n            @Override\r\n            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {\r\n\r\n                if(isSelectSeat[position] == 0){\r\n                    view.setBackgroundColor(Color.parseColor(\"#00FF00\"));\r\n                    totalCost += seatPrice;\r\n                    ++totalSeats;\r\n                    Toast.makeText(getApplicationContext(), \"You Selected Seat Number :\" + (position + 1), Toast.LENGTH_SHORT).show();\r\n                    isSelectSeat[position] = 1;\r\n                }else{\r\n                    view.setBackgroundColor(Color.parseColor(\"#FFFFFF\"));\r\n                    totalCost -= seatPrice;\r\n                    --totalSeats;\r\n                    Toast.makeText(getApplicationContext(), \"You Unselected Seat Number :\" + (position + 1), Toast.LENGTH_SHORT).show();\r\n                    isSelectSeat[position] = 0;\r\n                }\r\n                totalCostTextView.setText(\"Total Cost:\" + totalCost+\"\");\r\n                selectedSeatsTextView.setText(\"Number of selected Seats:\"+totalSeats+\"\");\r\n            }\r\n        });\r\n\r\n        button.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intentPay  = new Intent(getApplicationContext(),CanPayActivity.class);\r\n                intentPay.putExtra(\"fromCity\",StartPoint);\r\n                intentPay.putExtra(\"toCity\",EndPoint);\r\n                intentPay.putExtra(\"busName\",BusName);\r\n                intentPay.putExtra(\"journeyDate\",journeyDate);\r\n                intentPay.putExtra(\"busCondition\",Type);\r\n                intentPay.putExtra(\"numberOfSeats\",Integer.toString(totalSeats));\r\n                intentPay.putExtra(\"totalCosts\",Double.toString(totalCost));\r\n                startActivity(intentPay);\r\n            }\r\n        });\r\n\r\n\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/bus/SeatChoose.java	(revision 23c2639ec88212e8103ef2701acfda4a0f7689c3)
++++ app/src/main/java/com/example/bus/SeatChoose.java	(date 1624822952251)
+@@ -13,6 +13,10 @@
+ import android.widget.TextView;
+ import android.widget.Toast;
+ 
++import com.google.firebase.auth.FirebaseAuth;
++import com.google.firebase.database.DatabaseReference;
++import com.google.firebase.database.FirebaseDatabase;
++
+ import java.util.ArrayList;
+ import java.util.List;
+ 
+@@ -24,6 +28,9 @@
+     Double totalCost = 0.0;
+     int totalSeats = 0;
+     int[] isSelectSeat = new int[25];
++    private FirebaseAuth auth;
++    private FirebaseDatabase firebaseDatabase;
++    private DatabaseReference databaseReference;
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+@@ -38,8 +45,14 @@
+         selectedSeatsTextView = (TextView)findViewById(R.id.select_seat_TextViewId);
+         totalCostTextView = (TextView)findViewById(R.id.total_cost_TextViewId);
+ 
++        auth = FirebaseAuth.getInstance();
++        firebaseDatabase = FirebaseDatabase.getInstance("https://buss-886c2-default-rtdb.asia-southeast1.firebasedatabase.app/");
++
++
++
+ 
+         Intent intent = getIntent();
++        String BusID = intent.getStringExtra("busID").toString();
+         String BusName = intent.getStringExtra("busName").toString();
+         String StartPoint = intent.getStringExtra("start").toString();
+         String EndPoint = intent.getStringExtra("end").toString();
+@@ -49,6 +62,8 @@
+         String journeyDate = intent.getStringExtra("journeyDate").toString();
+         seatPrice =Double.parseDouble(Fare) ;
+ 
++
++
+         List<CustomGrid> list = new ArrayList<CustomGrid>();
+ 
+         for(int i = 1 ; i <= 24 ; i++){
