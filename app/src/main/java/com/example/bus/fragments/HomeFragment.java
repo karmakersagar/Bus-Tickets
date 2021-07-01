@@ -62,7 +62,7 @@ public class HomeFragment extends Fragment {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker datePicker, int year, int month, int date) {
-                                journeyDateEditText.setText(date+" - "+month+" - "+year);
+                                journeyDateEditText.setText(date+" - "+(month+1)+" - "+year);
                             }
                         },
                         journeyYear,
@@ -97,21 +97,11 @@ public class HomeFragment extends Fragment {
                 }
 
                 Intent intent = new Intent(getActivity(), BuslistActivity.class);
-                //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("fromLocation", fromCity);
                 intent.putExtra("toLocation",toCity);
                 intent.putExtra("journeyDate",date);
-                //startActivity(intent);
                 getActivity().startActivity(intent);
 
-//                Bundle sendSearchData = getArguments();
-//                sendSearchData.putString("fromLocation",fromCity);
-//                sendSearchData.putString("toLocation",toCity);
-//                sendSearchData.putString("journeyDate",date);
-                //
-                // passSearchData locationData = new passSearchData(fromCity,toCity,date);
-
-//                startActivity(intentBusListActivity);
             }
         });
 

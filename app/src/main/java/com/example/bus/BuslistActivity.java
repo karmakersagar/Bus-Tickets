@@ -22,6 +22,7 @@ import org.jetbrains.annotations.NotNull;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class BuslistActivity extends AppCompatActivity {
@@ -56,17 +57,14 @@ public class BuslistActivity extends AppCompatActivity {
         String ToLocation = intent.getStringExtra("toLocation").toString();
         String JourneyDate = intent.getStringExtra("journeyDate").toString();
         calendar = Calendar.getInstance();
-        SimpleDateFormat currentDateFormat = new SimpleDateFormat("dd - M - yyyy");
+        SimpleDateFormat currentDateFormat = new SimpleDateFormat("d - M - yyyy");
         currentDate = currentDateFormat.format(calendar.getTime());
+//        System.out.println(currentDate);
         SimpleDateFormat currentTimeFormat = new SimpleDateFormat("HH:mm");
-
         currentTime = currentTimeFormat.format(calendar.getTime());
 //        System.out.println(currentTime);
 //        System.out.println(currentDate);
 //        System.out.println(JourneyDate);
-
-
-
 
 
         db = FirebaseDatabase.getInstance("https://buss-886c2-default-rtdb.asia-southeast1.firebasedatabase.app/");

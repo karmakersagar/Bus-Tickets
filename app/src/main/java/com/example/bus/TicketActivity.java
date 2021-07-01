@@ -61,7 +61,6 @@ public class TicketActivity extends AppCompatActivity {
                         issueDate = dataSnapshot.child("issueDate").getValue(String.class);
                         issueTime = dataSnapshot.child("issueTime").getValue(String.class);
                         list.add(new TicketActivityItem(ticketID,busName,fromLocation,toLocation,issueDate,issueTime));
-                        Log.d("Tag", "Data" + ticketID );
                     }
                     adapter.notifyDataSetChanged();
                     Toast.makeText(TicketActivity.this, "Here are your tickets!", Toast.LENGTH_SHORT).show();
