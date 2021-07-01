@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,6 +27,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -36,45 +39,51 @@ import static android.content.ContentValues.TAG;
 public class Profile extends Fragment  {
 
 
-       private View view;
-       private CircleImageView imageProfile;
-       private TextView fullName;
-       private ImageView emailImage;
-       private TextView textEmail;
-       private ImageView passImage;
-       private TextView passText;
-       private ImageView imagePhone;
-       private TextView textPhone;
-       private Button editButton;
-       private FirebaseAuth firebaseAuth;
-       private FirebaseDatabase firebaseDatabase;
-       private DatabaseReference databaseReference;
-       private FirebaseUser firebaseUser;
+    private View view;
+    private ImageView imageProfile;
+    private TextView fullName;
 
-       String fName,lName,mail,pass,phn;
+    private TextView textEmail;
+
+    private TextView passText;
+
+    private TextView textPhone;
 
 
+    private Button editButton;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+    private FirebaseUser firebaseUser;
 
+    String fName,lName,mail,pass,phn,imageUrl = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
+        getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         view =  inflater.inflate(R.layout.fragment_profile, container, false);
         imageProfile = view.findViewById(R.id.mainImage);
         fullName = view.findViewById(R.id.fullText);
-        emailImage = view.findViewById(R.id.emailImage);
+
         textEmail = view.findViewById(R.id.eamilTxt);
-        imagePhone = view.findViewById(R.id.phoneImage);
+
         textPhone = view.findViewById(R.id.phoneTxt);
-        passImage = view.findViewById(R.id.paswordImage);
+
         passText = view.findViewById(R.id.passwordTxt);
         editButton = view.findViewById(R.id.editButton);
+
+
+
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         String userId = firebaseUser.getUid();
         firebaseDatabase = FirebaseDatabase.getInstance("https://buss-886c2-default-rtdb.asia-southeast1.firebasedatabase.app/");
         databaseReference = firebaseDatabase.getReference("users").child(userId);
+
+
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
@@ -86,13 +95,16 @@ public class Profile extends Fragment  {
                 fName = userProfile.getFirstName();
                 lName = userProfile.getLastName();
 
+                if(snapshot.child("profileImage").getValue() != null){
+                    imageUrl = snapshot.child("profileImage").getValue().toString();
+                    Toast.makeText(getContext(),imageUrl,Toast.LENGTH_LONG).show();
+                    Picasso.get().load(imageUrl).placeholder(R.drawable.tom).into(imageProfile);
+                }
+
             }
 
             @Override
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
-                // Getting Post failed, log a message
-                //Log.w(TAG, "loadPost:onCancelled", error.toException());
-
 
             }
         });
@@ -104,23 +116,34 @@ public class Profile extends Fragment  {
 
                 mail = textEmail.getText().toString().trim();
 
-            Bundle dataBundle = new Bundle();
-            dataBundle.putString("firstName",fName);
-            dataBundle.putString("lastName",lName);
-            dataBundle.putString("mail",mail);
-            dataBundle.putString("phone",textPhone.getText().toString());
-            dataBundle.putString("password",passText.getText().toString());
-            Update_Profile update_profile = new Update_Profile();
-            update_profile.setArguments(dataBundle);
-            getFragmentManager().beginTransaction().replace(R.id.frameLayout, update_profile).addToBackStack(null).commit();
-                }
+                Bundle dataBundle = new Bundle();
+                dataBundle.putString("firstName",fName);
+                dataBundle.putString("lastName",lName);
+                dataBundle.putString("mail",mail);
+                dataBundle.putString("phone",textPhone.getText().toString());
+                dataBundle.putString("password",passText.getText().toString());
+                dataBundle.putString("profileImage",imageUrl);
+
+
+                Update_Profile update_profile = new Update_Profile();
+                update_profile.setArguments(dataBundle);
+                getFragmentManager().beginTransaction().replace(R.id.frameLayout, update_profile).addToBackStack(null).commit();
+            }
 
         });
-
-
-
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
+    }
 
 }

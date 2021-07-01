@@ -16,30 +16,32 @@
             android:layout_width="match_parent"
             android:layout_height="300dp">
             <LinearLayout
-                android:background="@drawable/gradientbackground"
+
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
                     android:id="@+id/mainImage"
-                    android:layout_marginTop="20dp"
                     android:src="@drawable/tom"
+                    android:layout_marginTop="5dp"
                     />
-
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_gravity="center_horizontal"
                     android:id="@+id/fullText"
                     android:textAlignment="center"
-                    android:textColor="#fff"
+                    android:fontFamily="monospace"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="5dp"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:layout_marginTop="20dp"/>
+                    android:text="UserName"
+                    />
 
 
             </LinearLayout>
@@ -61,8 +63,8 @@
 
                 <ImageView
                     android:id="@+id/emailImage"
-                    android:layout_width="20dp"
-                    android:layout_height="36dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:src="@drawable/ic_emai_icon" />
 
                 <TextView
@@ -73,7 +75,13 @@
                     android:autoSizeTextType="uniform"
                     android:gravity="center_horizontal"
                     android:singleLine="true"
-                    android:textAlignment="center" />
+                    android:textColor="@color/black"
+                    android:fontFamily="monospace"
+                    android:textAlignment="center"
+                    android:text="User Email"
+                    android:textStyle="bold"
+                    android:textSize="17sp"
+                    />
 
             </LinearLayout>
 
@@ -88,7 +96,7 @@
                     android:id="@+id/phoneImage"
                     android:layout_width="20dp"
                     android:layout_height="36dp"
-                    android:src="@drawable/ic_baseline_local_phone_24" />
+                    android:src="@drawable/ic_phone" />
 
                 <TextView
                     android:id="@+id/phoneTxt"
@@ -97,7 +105,11 @@
                     android:layout_marginLeft="20dp"
                     android:gravity="center_horizontal"
                     android:textAlignment="center"
-                    android:textSize="20dp" />
+                    android:text="Phone Number"
+                    android:textSize="15sp"
+                    android:fontFamily="monospace"
+                    android:textColor="@color/black"
+                    />
 
             </LinearLayout>
 
@@ -112,7 +124,7 @@
                     android:id="@+id/paswordImage"
                     android:layout_width="20dp"
                     android:layout_height="36dp"
-                    android:src="@drawable/ic_baseline_password_24" />
+                    android:src="@drawable/ic_lock"/>
 
                 <TextView
                     android:id="@+id/passwordTxt"
@@ -121,7 +133,11 @@
                     android:layout_marginLeft="20dp"
                     android:gravity="center_horizontal"
                     android:textAlignment="center"
-                    android:textSize="20dp" />
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:text="User Password"
+                    android:fontFamily="monospace"
+                    />
 
             </LinearLayout>
 
@@ -149,6 +165,5 @@
 
     </LinearLayout>
 
-    <!-- TODO: Update blank fragment layout -->
 
 </ScrollView>

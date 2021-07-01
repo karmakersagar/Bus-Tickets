@@ -28,8 +28,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private String userId,firstName,lastName;
     private View headerView;
     private DatabaseReference databaseReference;
+    private CircleImageView circleImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.NavigationView);
         firebaseAuth = FirebaseAuth.getInstance();
 
-
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.Open,R.string.Close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
 
@@ -72,14 +75,14 @@ public class MainActivity extends AppCompatActivity {
         if(data != null){
             String password = (String) data.get("Password");
             firebaseUser = firebaseAuth.getCurrentUser();
-             userId = firebaseUser.getUid();
+            userId = firebaseUser.getUid();
             FirebaseDatabase.getInstance("https://buss-886c2-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("users").child(userId).child("passWord").setValue(password);
         }
 
-
-        //finish();
         headerView = navigationView.getHeaderView(0);
         fullName = headerView.findViewById(R.id.textFullName);
+        circleImageView = (CircleImageView) headerView.findViewById(R.id.profileImageCirculerId);
+
         String userIddd = firebaseAuth.getCurrentUser().getUid();
         databaseReference = FirebaseDatabase.getInstance("https://buss-886c2-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("users").child(userIddd);
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -87,6 +90,11 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 Users usr = snapshot.getValue(Users.class);
                 fullName.setText(usr.getFirstName() + " " + usr.getLastName());
+
+                if(snapshot.child("profileImage").getValue() != null){
+                    String imageUrl = snapshot.child("profileImage").getValue().toString();
+                    Picasso.get().load(imageUrl).placeholder(R.drawable.tom).into(circleImageView);
+                }
             }
 
             @Override
@@ -132,8 +140,8 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.logout:
                         Toast.makeText(MainActivity.this, "Log out  Menu is Clicked !!", Toast.LENGTH_SHORT).show();
-                         logOutBuilder = new AlertDialog.Builder(MainActivity.this);
-                         //setTitle
+                        logOutBuilder = new AlertDialog.Builder(MainActivity.this);
+                        //setTitle
                         logOutBuilder.setTitle("Log Out");
                         //Set message
                         logOutBuilder.setMessage("Are You Sure to LogOut ???");
@@ -181,10 +189,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
 
     }
-   /* public void fullName(String firstName, String lastName){
-        fullName = headerView.findViewById(R.id.textFullName);
-        fullName.setText(firstName + " " + lastName);
-    }*/
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -204,6 +209,14 @@ public class MainActivity extends AppCompatActivity {
         else{
             super.onBackPressed();
         }
+
+
+
+
+
+
+
+
 //           //else {exitAppBuilder = new AlertDialog.Builder(MainActivity.this);
 //        exitAppBuilder.setMessage("Tui ki Asolei ber hoye jabi Ga ?").setCancelable(false)
 //                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
@@ -226,4 +239,5 @@ public class MainActivity extends AppCompatActivity {
         }*/
 
     }
+
 }
