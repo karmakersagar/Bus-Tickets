@@ -29,7 +29,7 @@ import java.util.Map;
 public class BookingFinish extends AppCompatActivity {
     private Button homeButton;
 
-    String busNam,fromCity,toCity,fare,seatsName,time,busCondition,issueDate,issueTime,journeyDate,userId;
+    String busNam,fromCity,toCity,fare,seatsName,time,busCondition,issueDate,issueTime,journeyDate,userId,message;
     private TextView busNameTextView, journeyDateTextView, ticketIDTextView;
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
@@ -55,6 +55,7 @@ public class BookingFinish extends AppCompatActivity {
          time = intentTickets.getStringExtra("time").toString();
          busCondition = intentTickets.getStringExtra("busCondition").toString();
          seatsName = intentTickets.getStringExtra("seatName").toString();
+         message = intentTickets.getStringExtra("noti");
          firebaseAuth = FirebaseAuth.getInstance();
          userId = firebaseAuth.getCurrentUser().getUid();
 
@@ -89,12 +90,12 @@ public class BookingFinish extends AppCompatActivity {
         databaseReference.child(key).setValue(ticketDetailsMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull @NotNull Task<Void> task) {
-                Toast.makeText(BookingFinish.this, "Tickets database Created ", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(BookingFinish.this, "Tickets database Created ", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull @NotNull Exception e) {
-                Toast.makeText(BookingFinish.this, "Tickets Database creation failed ", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(BookingFinish.this, "Tickets Database creation failed ", Toast.LENGTH_SHORT).show();
             }
         });
 

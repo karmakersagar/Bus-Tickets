@@ -4,10 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +46,9 @@ public class CanPayActivity extends AppCompatActivity {
     private CardView bKashCardView,rocketCardView,mCashCardView,nagadCardView;
     private LayoutInflater layoutInflater;
     private View view;
-    private String BusName,JourneyDate,BusCondition,FromCity, ToCity, totalCosts,numberOfSeats,seatsName,busID ,time,fare,issueDate,issueTime ;
+    private  EditText userNumber;
+    private String BusName,JourneyDate,BusCondition,FromCity, ToCity, totalCosts,numberOfSeats,seatsName,busID ,time,fare,issueDate,issueTime;
+    private  String payContactNo ;
     Map<String,String> seatMap;
 
     private String isSelected = null;
@@ -98,11 +107,18 @@ public class CanPayActivity extends AppCompatActivity {
         totalCostsTextView.setText(totalCosts);
 
 
+
+
         bKashCardView.setOnClickListener(this::onClick);
         nagadCardView.setOnClickListener(this::onClick);
         rocketCardView.setOnClickListener(this::onClick);
         mCashCardView.setOnClickListener(this::onClick);
         button.setOnClickListener(this::onClick);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationChannel notificationChannel = new NotificationChannel("BookYourRide","BookYourRide",NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
 
 
     }
@@ -122,58 +138,76 @@ public class CanPayActivity extends AppCompatActivity {
         if(v.getId() == R.id.rocketCardViewId){
             setCardView("Rocket",rocketCardView,R.drawable.rocket);
         }
-        if(v.getId() == R.id.payButtonId){
-            Intent intent1 = new Intent(getApplicationContext(),BookingFinish.class);
-            db = FirebaseDatabase.getInstance("https://buss-886c2-default-rtdb.asia-southeast1.firebasedatabase.app/");
-            root = db.getReference("SeatDetails").child(busID).child(JourneyDate);
-            intent1.putExtra("busName",BusName);
-            intent1.putExtra("from",FromCity);
-            intent1.putExtra("to",ToCity);
-            intent1.putExtra("journeyDate",JourneyDate);
-            intent1.putExtra("Fare",fare);
-            intent1.putExtra("seatName",seatsName);
-            intent1.putExtra("time",time);
-            intent1.putExtra("busCondition",BusCondition);
-            //intent1.putExtra("isuueDate",issueDate);
-           // intent1.putExtra("issueTime",issueTime);
-            root.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                    if(snapshot.exists()){
-                        int index;
-                        for(index = 1; index<=24; index++){
-                            String seatIndex = "A"+index;
-                            if(seatMap.get(seatIndex).equals("1")){
-                                root.child(seatIndex).setValue("1");
+
+        System.out.println(payContactNo);
+        if(v.getId() == R.id.payButtonId) {
+                String message = "Your seat booking for " + BusName + " bus is confirmed";
+
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(CanPayActivity.this, "BookYourRide");
+                builder.setContentTitle("Ticket Booking Successfull");
+                builder.setContentText(message);
+                builder.setSmallIcon(R.drawable.ic_messagenoti);
+                builder.setAutoCancel(true);
+                NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(CanPayActivity.this);
+                notificationManagerCompat.notify(1, builder.build());
+
+
+                Intent intent1 = new Intent(getApplicationContext(), BookingFinish.class);
+                intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent1.putExtra("noti", message);
+
+                db = FirebaseDatabase.getInstance("https://buss-886c2-default-rtdb.asia-southeast1.firebasedatabase.app/");
+                root = db.getReference("SeatDetails").child(busID).child(JourneyDate);
+                intent1.putExtra("busName", BusName);
+                intent1.putExtra("from", FromCity);
+                intent1.putExtra("to", ToCity);
+                intent1.putExtra("noti", message);
+                intent1.putExtra("journeyDate", JourneyDate);
+                intent1.putExtra("Fare", fare);
+                intent1.putExtra("seatName", seatsName);
+                intent1.putExtra("time", time);
+                intent1.putExtra("busCondition", BusCondition);
+                //intent1.putExtra("isuueDate",issueDate);
+                // intent1.putExtra("issueTime",issueTime);
+                root.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
+                            int index;
+                            for (index = 1; index <= 24; index++) {
+                                String seatIndex = "A" + index;
+                                if (seatMap.get(seatIndex).equals("1")) {
+                                    root.child(seatIndex).setValue("1");
+                                }
                             }
+                        } else {
+                            root.setValue(seatMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull @NotNull Task<Void> task) {
+                                    //  Toast.makeText(CanPayActivity.this, "Databsse created", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull @NotNull Exception e) {
+                                    // Toast.makeText(CanPayActivity.this, "Databse creation failed", Toast.LENGTH_SHORT).show();
+                                }
+                            });
                         }
-                    }
-                    else{
-                        root.setValue(seatMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull @NotNull Task<Void> task) {
-                                Toast.makeText(CanPayActivity.this, "Databsse created", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull @NotNull Exception e) {
-                                Toast.makeText(CanPayActivity.this, "Databse creation failed", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+
                     }
 
-                }
+                    @Override
+                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
 
-                @Override
-                public void onCancelled(@NonNull @NotNull DatabaseError error) {
+                    }
+                });
+                intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent1);
 
-                }
-            });
-            intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent1);
 
         }
+
 
     }
 
@@ -195,9 +229,9 @@ public class CanPayActivity extends AppCompatActivity {
 
 
         view = layoutInflater.inflate(R.layout.payment_set,null,false);
-        EditText userNumber = view.findViewById(R.id.phoneNumberId);
+         userNumber = view.findViewById(R.id.phoneNumberId);
         EditText otp = view.findViewById(R.id.otpId);
-
+        payContactNo = userNumber.getText().toString();
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(CanPayActivity.this);
         alertDialogBuilder.setTitle(name);
         alertDialogBuilder.setIcon(image);
@@ -208,7 +242,7 @@ public class CanPayActivity extends AppCompatActivity {
                     }
                 });
 
-        alertDialogBuilder.setNegativeButton("Cancle",new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();

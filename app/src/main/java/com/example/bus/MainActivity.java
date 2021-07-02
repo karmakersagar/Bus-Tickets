@@ -114,18 +114,18 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.home :
-                        Toast.makeText(MainActivity.this, "Home Menu is Clicked !!", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(MainActivity.this, "Home Menu is Clicked !!", Toast.LENGTH_SHORT).show();
                         showFragmentsss(new HomeFragment());
                         drawerLayout.closeDrawer(GravityCompat.START);
                         return true;
                     case R.id.profile:
-                        Toast.makeText(MainActivity.this, "Profile Menu is Clicked !!", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(MainActivity.this, "Profile Menu is Clicked !!", Toast.LENGTH_SHORT).show();
                         showFragmentsss(new Profile());
                         drawerLayout.closeDrawer(GravityCompat.START);
                         return true;
 
                     case R.id.notification:
-                        Toast.makeText(MainActivity.this, "notification Menu is Clicked !!", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(MainActivity.this, "notification Menu is Clicked !!", Toast.LENGTH_SHORT).show();
                         Intent intentNoti = new Intent(getApplicationContext(),Notifications.class);
                         intentNoti.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intentNoti);
@@ -133,13 +133,13 @@ public class MainActivity extends AppCompatActivity {
 
 
                     case R.id.tickets:
-                        Toast.makeText(MainActivity.this, "Tickets Menu is Clicked !!", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(MainActivity.this, "Tickets Menu is Clicked !!", Toast.LENGTH_SHORT).show();
                         Intent intentTickets = new Intent(getApplicationContext(),TicketActivity.class);
                         intentTickets.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intentTickets);
                         return true;
                     case R.id.logout:
-                        Toast.makeText(MainActivity.this, "Log out  Menu is Clicked !!", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(MainActivity.this, "Log out  Menu is Clicked !!", Toast.LENGTH_SHORT).show();
                         logOutBuilder = new AlertDialog.Builder(MainActivity.this);
                         //setTitle
                         logOutBuilder.setTitle("Log Out");

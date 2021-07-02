@@ -97,7 +97,7 @@ public class Profile extends Fragment  {
 
                 if(snapshot.child("profileImage").getValue() != null){
                     imageUrl = snapshot.child("profileImage").getValue().toString();
-                    Toast.makeText(getContext(),imageUrl,Toast.LENGTH_LONG).show();
+                   // Toast.makeText(getContext(),imageUrl,Toast.LENGTH_LONG).show();
                     Picasso.get().load(imageUrl).placeholder(R.drawable.tom).into(imageProfile);
                 }
 
