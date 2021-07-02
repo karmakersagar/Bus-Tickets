@@ -130,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
                         Intent intentTickets = new Intent(getApplicationContext(),TicketActivity.class);
                         intentTickets.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intentTickets);
+                        drawerLayout.closeDrawer(GravityCompat.START);
                         return true;
                     case R.id.logout:
                         //Toast.makeText(MainActivity.this, "Log out  Menu is Clicked !!", Toast.LENGTH_SHORT).show();
