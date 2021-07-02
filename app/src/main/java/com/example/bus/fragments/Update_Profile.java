@@ -227,7 +227,7 @@ public class Update_Profile extends Fragment {
     }
     private boolean isLastNameChanged(){
         if(!lName.equals(lastName.getText().toString())){
-            databaseReference.child("lastName").setValue(firstName.getText().toString());
+            databaseReference.child("lastName").setValue(lastName.getText().toString());
             lName = lastName.getText().toString();
             return true;
         }else {

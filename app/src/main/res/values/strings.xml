@@ -38,6 +38,7 @@
     </string-array>
 
     <string-array name="from">
+        <item> Barisal</item>
         <item> Barguna</item>
         <item> Bhola</item>
         <item> Jhalokati</item>
@@ -105,6 +106,7 @@
     </string-array>
 
     <string-array name="to">
+        <item> Barisal</item>
         <item> Barguna</item>
         <item> Bhola</item>
         <item> Jhalokati</item>

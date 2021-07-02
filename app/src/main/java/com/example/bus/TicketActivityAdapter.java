@@ -51,7 +51,7 @@ public class TicketActivityAdapter extends RecyclerView.Adapter<TicketActivityAd
     }
 
 
-    public class TicketViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class TicketViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView ticketID, busName, fromLocation, toLocation, issueTime, issueDate;
 
         public TicketViewHolder(@NonNull View itemView) {

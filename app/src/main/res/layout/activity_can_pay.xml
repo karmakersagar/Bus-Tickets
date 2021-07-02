@@ -19,8 +19,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:orientation="vertical">
+                android:layout_marginLeft="5dp"
+                android:orientation="vertical"
+                android:background="@color/Akashi">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -139,7 +140,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    >
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -221,32 +223,24 @@
                 </LinearLayout>
 
             </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="5"
-        android:layout_marginEnd="10dp"
-        android:layout_marginStart="90dp"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal">
 
 
-        >
-            <Button
-                android:id="@+id/applyCouponId"
-                android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:fontFamily="serif"
-                android:text="Apply Coupon"
-                android:textAllCaps="false"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-    </LinearLayout>
-
-
-
-
-
+                android:text="Please Select a Method to Pay "
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/black"
+                android:autoSizeTextType="uniform"
+                />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -254,7 +248,11 @@
             android:weightSum="2"
             android:padding="5dp"
             android:layout_margin="5dp"
+            android:layout_marginTop="30dp"
             >
+
+
+
             <androidx.cardview.widget.CardView
 
                 android:layout_width="0dp"

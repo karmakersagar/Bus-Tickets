@@ -124,12 +124,12 @@ public class MainActivity extends AppCompatActivity {
                         drawerLayout.closeDrawer(GravityCompat.START);
                         return true;
 
-                    case R.id.notification:
-                        //Toast.makeText(MainActivity.this, "notification Menu is Clicked !!", Toast.LENGTH_SHORT).show();
-                        Intent intentNoti = new Intent(getApplicationContext(),Notifications.class);
-                        intentNoti.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intentNoti);
-                        return true;
+//                    case R.id.notification:
+//                        //Toast.makeText(MainActivity.this, "notification Menu is Clicked !!", Toast.LENGTH_SHORT).show();
+//                        Intent intentNoti = new Intent(getApplicationContext(),Notifications.class);
+//                        intentNoti.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        startActivity(intentNoti);
+//                        return true;
 
 
                     case R.id.tickets:
@@ -215,28 +215,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
-//           //else {exitAppBuilder = new AlertDialog.Builder(MainActivity.this);
-//        exitAppBuilder.setMessage("Tui ki Asolei ber hoye jabi Ga ?").setCancelable(false)
-//                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialogInterface, int i) {
-//
-//                             MainActivity.super.onBackPressed();
-//                    }
-//                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//                dialogInterface.dismiss();
-//            }
-//        });
-//        exitAppBuilder.show();
-//        }
-
-      /*  if(drawerLayout.isDrawerOpen(GravityCompat.START)){
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }*/
 
     }
 

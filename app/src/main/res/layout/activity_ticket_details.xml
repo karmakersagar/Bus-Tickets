@@ -96,8 +96,8 @@
                 android:layout_marginTop="10dp"
                 android:hint="prodipta0109@gmail.com"
                 android:id="@+id/emailTicket"
-                android:textSize="15sp"
                 android:layout_marginLeft="3dp"
+                android:autoSizeTextType="uniform"
                 />
 
         </LinearLayout>

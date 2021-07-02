@@ -20,9 +20,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@color/endblue">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:id="@+id/mainImage"
@@ -36,7 +37,7 @@
                     android:id="@+id/fullText"
                     android:textAlignment="center"
                     android:fontFamily="monospace"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:layout_marginTop="5dp"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -65,7 +66,8 @@
                     android:id="@+id/emailImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_emai_icon" />
+                    android:src="@drawable/ic_email_icon"
+                    />
 
                 <TextView
                     android:id="@+id/eamilTxt"
@@ -80,7 +82,6 @@
                     android:textAlignment="center"
                     android:text="User Email"
                     android:textStyle="bold"
-                    android:textSize="17sp"
                     />
 
             </LinearLayout>
@@ -96,7 +97,7 @@
                     android:id="@+id/phoneImage"
                     android:layout_width="20dp"
                     android:layout_height="36dp"
-                    android:src="@drawable/ic_phone" />
+                    android:src="@drawable/ic_phone_2" />
 
                 <TextView
                     android:id="@+id/phoneTxt"
@@ -109,6 +110,7 @@
                     android:textSize="15sp"
                     android:fontFamily="monospace"
                     android:textColor="@color/black"
+                    android:textStyle="bold"
                     />
 
             </LinearLayout>
@@ -124,7 +126,7 @@
                     android:id="@+id/paswordImage"
                     android:layout_width="20dp"
                     android:layout_height="36dp"
-                    android:src="@drawable/ic_lock"/>
+                    android:src="@drawable/ic_lock_2"/>
 
                 <TextView
                     android:id="@+id/passwordTxt"
@@ -137,6 +139,7 @@
                     android:textSize="15sp"
                     android:text="User Password"
                     android:fontFamily="monospace"
+                    android:textStyle="bold"
                     />
 
             </LinearLayout>

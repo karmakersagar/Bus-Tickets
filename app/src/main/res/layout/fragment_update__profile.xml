@@ -20,8 +20,9 @@
                 android:orientation="vertical">
                 <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <ImageView
+                    android:layout_height="match_parent"
+                    android:background="@color/endblue">
+                    <de.hdodenhof.circleimageview.CircleImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/circleImage"
@@ -37,6 +38,7 @@
                         android:background="#D8CFCF"
                         android:layout_marginEnd="10dp"
                         android:layout_marginBottom="5dp"
+                        android:outlineAmbientShadowColor="@color/black"
                         />
                 </FrameLayout>
 
@@ -60,7 +62,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_emai_icon"
+                    android:drawableLeft="@drawable/ic_email_icon"
                     android:drawablePadding="10dp"
                     android:id="@+id/emailTxt"
                     android:clickable="false"
@@ -68,6 +70,7 @@
                     android:textColor="@color/black"
                     android:fontFamily="monospace"
                     android:focusableInTouchMode="false"
+                    android:autoSizeTextType="uniform"
                     />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -85,6 +88,7 @@
                     android:id="@+id/firstNameTxt"
                     android:textColor="@color/black"
                     android:fontFamily="monospace"
+
                     />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -117,7 +121,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_phone"
+                    android:drawableLeft="@drawable/ic_phone_2"
                     android:drawablePadding="10dp"
                     android:id="@+id/phoneTxt"
                     android:textColor="@color/black"
@@ -134,7 +138,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_lock"
+                    android:drawableLeft="@drawable/ic_lock_2"
                     android:drawablePadding="10dp"
                     android:id="@+id/passwordTxt"
                     android:textColor="@color/black"

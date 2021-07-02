@@ -41,6 +41,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CanPayActivity extends AppCompatActivity {
+
     private TextView busNameTextView,journeyDateTextView,busConditionTextView,numberOfSeatsTextView,totalCostsTextView,fromTextView,toTextView;
     private Button button;
     private CardView bKashCardView,rocketCardView,mCashCardView,nagadCardView;
@@ -50,6 +51,8 @@ public class CanPayActivity extends AppCompatActivity {
     private String BusName,JourneyDate,BusCondition,FromCity, ToCity, totalCosts,numberOfSeats,seatsName,busID ,time,fare,issueDate,issueTime;
     private  String payContactNo ;
     Map<String,String> seatMap;
+    private String payContactNumber = "";
+
 
     private String isSelected = null;
     private FirebaseDatabase db;
@@ -139,8 +142,11 @@ public class CanPayActivity extends AppCompatActivity {
             setCardView("Rocket",rocketCardView,R.drawable.rocket);
         }
 
-        System.out.println(payContactNo);
+
+
+        //System.out.println(payContactNo);
         if(v.getId() == R.id.payButtonId) {
+            if(!payContactNumber.isEmpty()){
                 String message = "Your seat booking for " + BusName + " bus is confirmed";
 
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(CanPayActivity.this, "BookYourRide");
@@ -204,7 +210,11 @@ public class CanPayActivity extends AppCompatActivity {
                 intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent1);
+            }
 
+            else{
+                Toast.makeText(this, "Please give your payment contact number", Toast.LENGTH_SHORT).show();
+            }
 
         }
 
@@ -229,7 +239,7 @@ public class CanPayActivity extends AppCompatActivity {
 
 
         view = layoutInflater.inflate(R.layout.payment_set,null,false);
-         userNumber = view.findViewById(R.id.phoneNumberId);
+        userNumber = view.findViewById(R.id.phoneNumberId);
         EditText otp = view.findViewById(R.id.otpId);
         payContactNo = userNumber.getText().toString();
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(CanPayActivity.this);
@@ -239,6 +249,7 @@ public class CanPayActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
+                        payContactNumber = userNumber.getText().toString();
                     }
                 });
 

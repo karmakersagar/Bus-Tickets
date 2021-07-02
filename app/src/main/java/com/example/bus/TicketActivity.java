@@ -66,7 +66,7 @@ public class TicketActivity extends AppCompatActivity {
                         list.add(new TicketActivityItem(ticketID,busName,fromLocation,toLocation,issueDate,issueTime));
                     }
                     adapter.notifyDataSetChanged();
-                    Toast.makeText(TicketActivity.this, "Here are your tickets!", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(TicketActivity.this, "Here are your tickets!", Toast.LENGTH_SHORT).show();
 
                 }
                 else{
