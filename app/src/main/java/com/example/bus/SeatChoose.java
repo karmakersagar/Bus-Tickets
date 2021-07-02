@@ -38,7 +38,7 @@ import java.util.Map;
 public class SeatChoose extends AppCompatActivity {
     private GridView gridView;
     private Button button;
-    private TextView selectedSeatsTextView,totalCostTextView;
+    private TextView selectedSeatsTextView,totalCostTextView, busInfoTextView;
     private FirebaseAuth auth;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference,databaseReference2;
@@ -57,6 +57,7 @@ public class SeatChoose extends AppCompatActivity {
         button = (Button)findViewById(R.id.confirm_buttonId);
         selectedSeatsTextView = (TextView)findViewById(R.id.select_seat_TextViewId);
         totalCostTextView = (TextView)findViewById(R.id.total_cost_TextViewId);
+        busInfoTextView= (TextView)findViewById(R.id.busNameInfo);
         auth = FirebaseAuth.getInstance();
 
         Intent intent = getIntent();
@@ -69,9 +70,6 @@ public class SeatChoose extends AppCompatActivity {
         String Type = intent.getStringExtra("type").toString();
         String journeyDate = intent.getStringExtra("journeyDate").toString();
         seatPrice =Double.parseDouble(Fare) ;
-
-
-
 
         databaseReference = firebaseDatabase.getInstance("https://buss-886c2-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("SeatDetails").child(busId).child(journeyDate);
 
@@ -88,7 +86,6 @@ public class SeatChoose extends AppCompatActivity {
                     for(index = 1; index<=24; index++){
                         String a = snapshot.child("A"+index).getValue(String.class);
                         String index1 = Integer.toString(index);
-                        Log.d("ABC","Hello"+ a);
                         if(a.equals("1")){
                             list.add(new CustomGrid(R.drawable.seat_booked,"A"+index1));
                             seatMap.put("A"+index,"100");
@@ -155,6 +152,17 @@ public class SeatChoose extends AppCompatActivity {
                 //}
             }
         });
+
+
+        busInfoTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentBusInfo = new Intent(getApplicationContext(),BusInfo.class);
+                intentBusInfo.putExtra("busName",BusName);
+                startActivity(intentBusInfo);
+            }
+        });
+
 
 
             button.setOnClickListener(new View.OnClickListener() {

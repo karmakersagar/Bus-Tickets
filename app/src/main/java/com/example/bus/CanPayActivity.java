@@ -117,6 +117,7 @@ public class CanPayActivity extends AppCompatActivity {
         rocketCardView.setOnClickListener(this::onClick);
         mCashCardView.setOnClickListener(this::onClick);
         button.setOnClickListener(this::onClick);
+
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             NotificationChannel notificationChannel = new NotificationChannel("BookYourRide","BookYourRide",NotificationManager.IMPORTANCE_DEFAULT);
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
@@ -173,8 +174,8 @@ public class CanPayActivity extends AppCompatActivity {
                 intent1.putExtra("seatName", seatsName);
                 intent1.putExtra("time", time);
                 intent1.putExtra("busCondition", BusCondition);
-                //intent1.putExtra("isuueDate",issueDate);
-                // intent1.putExtra("issueTime",issueTime);
+
+
                 root.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
@@ -229,11 +230,10 @@ public class CanPayActivity extends AppCompatActivity {
             SetAlertDialogue(Name,image);
         }else if(isSelected.equals(Name)){
             cardView.setCardBackgroundColor(Color.parseColor("#FFFFFF"));
-            Toast.makeText(getApplicationContext(),"Unselected"+Name+"",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Unselected "+Name+"",Toast.LENGTH_SHORT).show();
             isSelected = null;
         }
     }
-
 
     private void SetAlertDialogue(String name,int image){
 

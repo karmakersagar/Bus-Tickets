@@ -124,13 +124,6 @@ public class MainActivity extends AppCompatActivity {
                         drawerLayout.closeDrawer(GravityCompat.START);
                         return true;
 
-//                    case R.id.notification:
-//                        //Toast.makeText(MainActivity.this, "notification Menu is Clicked !!", Toast.LENGTH_SHORT).show();
-//                        Intent intentNoti = new Intent(getApplicationContext(),Notifications.class);
-//                        intentNoti.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                        startActivity(intentNoti);
-//                        return true;
-
 
                     case R.id.tickets:
                         //Toast.makeText(MainActivity.this, "Tickets Menu is Clicked !!", Toast.LENGTH_SHORT).show();

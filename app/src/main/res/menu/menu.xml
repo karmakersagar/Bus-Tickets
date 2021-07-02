@@ -22,9 +22,7 @@
                 android:title="Tickets"
                 android:icon="@drawable/ic_tickets"/>
 
-            <item android:id="@+id/aboutus"
-                android:title="About Us"
-                android:icon="@drawable/ic_peopleaboutus"/>
+
 
             <item
                 android:id="@+id/logout"

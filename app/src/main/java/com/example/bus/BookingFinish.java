@@ -59,16 +59,6 @@ public class BookingFinish extends AppCompatActivity {
          firebaseAuth = FirebaseAuth.getInstance();
          userId = firebaseAuth.getCurrentUser().getUid();
 
-//        System.out.println(busNam);
-//        System.out.println(fromCity);
-//        System.out.println(toCity);
-//        System.out.println(fare);
-//        System.out.println(journeyDate);
-//        System.out.println(time);
-//        System.out.println(busCondition);
-//        System.out.println(seatsName);
-//        System.out.println(issueDate);
-//        System.out.println(issueTime);
         ticketDetailsMap.put("busName",busNam);
         ticketDetailsMap.put("from",fromCity);
         ticketDetailsMap.put("to",toCity);

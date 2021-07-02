@@ -11,6 +11,7 @@
         android:roundIcon="@drawable/bus_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.Bus">
+        <activity android:name=".BusInfo"></activity>
         <activity android:name=".TicketDetailsActivity" />
         <activity android:name=".TicketActivity" />
         <activity android:name=".BookingFinish" />

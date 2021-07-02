@@ -175,7 +175,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onSuccess(AuthResult authResult) {
                 if(firebaseAuth.getCurrentUser().isEmailVerified()){
-                    Toast.makeText(LoginActivity.this, "Log In successfull ", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(LoginActivity.this, "Log In successfull ", Toast.LENGTH_SHORT).show();
 
                     Intent ig = new Intent(getApplicationContext(),MainActivity.class);
                     ig.putExtra("Password",passText);

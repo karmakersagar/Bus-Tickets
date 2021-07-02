@@ -160,9 +160,9 @@ public class RegisterActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull @NotNull Task<Void> task) {
                                 if(task.isSuccessful()){
-                                    Toast.makeText(RegisterActivity.this, "database inserted", Toast.LENGTH_SHORT).show();
+                                   // Toast.makeText(RegisterActivity.this, "database inserted", Toast.LENGTH_SHORT).show();
                                 }else{
-                                    Toast.makeText(RegisterActivity.this, "databse not working", Toast.LENGTH_SHORT).show();
+                                  //  Toast.makeText(RegisterActivity.this, "databse not working", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });

@@ -59,19 +59,11 @@ public class BuslistActivity extends AppCompatActivity {
         calendar = Calendar.getInstance();
         SimpleDateFormat currentDateFormat = new SimpleDateFormat("d - M - yyyy");
         currentDate = currentDateFormat.format(calendar.getTime());
-//        System.out.println(currentDate);
         SimpleDateFormat currentTimeFormat = new SimpleDateFormat("HH:mm");
         currentTime = currentTimeFormat.format(calendar.getTime());
-//        System.out.println(currentTime);
-//        System.out.println(currentDate);
-//        System.out.println(JourneyDate);
-
 
         db = FirebaseDatabase.getInstance("https://buss-886c2-default-rtdb.asia-southeast1.firebasedatabase.app/");
         root = db.getReference("BusDetails").child(FromLocation).child(ToLocation);
-
-//        Intent intentDatePass = new Intent(getApplicationContext(),SeatChoose.class);
-//        intentDatePass.putExtra("journeyDate" , JourneyDate);
 
         recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);

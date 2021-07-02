@@ -13,42 +13,78 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
-        <TextView
-
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
-            android:text="Number of selected Seats:0"
-            android:id="@+id/select_seat_TextViewId"
-            android:textColor="@color/black"
-            android:layout_marginLeft="10dp"
-            android:fontFamily="serif-monospace"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            />
-        <TextView
-            android:id="@+id/total_cost_TextViewId"
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Total Cost : 0"
-            android:textColor="@color/black"
-            android:layout_marginLeft="10dp"
-            android:fontFamily="serif-monospace"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:layout_below="@id/select_seat_TextViewId"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="For Bus Info :"
 
-            />
+                android:textColor="@color/black"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="serif-monospace"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Click Here"
+                    android:background="@color/endblue"
+                    android:id="@+id/busNameInfo"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="serif-monospace"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="Number of selected Seats:0"
+                android:id="@+id/select_seat_TextViewId"
+                android:textColor="@color/black"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="serif-monospace"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                />
+            <TextView
+                android:id="@+id/total_cost_TextViewId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Total Cost : 0"
+                android:textColor="@color/black"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="serif-monospace"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_below="@id/select_seat_TextViewId"
+
+                />
+        </LinearLayout>
+
+
         <ImageView
+            android:layout_width="116dp"
+            android:layout_height="88dp"
             android:layout_alignParentEnd="true"
+            android:layout_marginStart="38dp"
             android:layout_marginTop="5dp"
-            android:layout_width="60dp"
-            android:layout_height="85dp"
-            android:src="@drawable/wheel"
-            android:layout_toEndOf="@id/select_seat_TextViewId"
-
-            />
+            android:src="@drawable/wheel" />
 
     </RelativeLayout>
 
