@@ -151,9 +151,9 @@ public class CanPayActivity extends AppCompatActivity {
                 String message = "Your seat booking for " + BusName + " bus is confirmed";
 
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(CanPayActivity.this, "BookYourRide");
-                builder.setContentTitle("Ticket Booking Successfull");
+                builder.setContentTitle("Ticket Booking Successful");
                 builder.setContentText(message);
-                builder.setSmallIcon(R.drawable.ic_messagenoti);
+                builder.setSmallIcon(R.drawable.bus_icon);
                 builder.setAutoCancel(true);
                 NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(CanPayActivity.this);
                 notificationManagerCompat.notify(1, builder.build());
@@ -232,6 +232,7 @@ public class CanPayActivity extends AppCompatActivity {
             cardView.setCardBackgroundColor(Color.parseColor("#FFFFFF"));
             Toast.makeText(getApplicationContext(),"Unselected "+Name+"",Toast.LENGTH_SHORT).show();
             isSelected = null;
+            payContactNumber = "";
         }
     }
 

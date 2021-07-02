@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                         //setTitle
                         logOutBuilder.setTitle("Log Out");
                         //Set message
-                        logOutBuilder.setMessage("Are You Sure to LogOut ???");
+                        logOutBuilder.setMessage("Are You Sure to Logout ???");
                         //positive yes button
                         logOutBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
