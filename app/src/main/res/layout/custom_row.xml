@@ -20,16 +20,16 @@
             android:src="@drawable/bus_icon"
             android:layout_gravity="center_vertical"
             android:scaleType="centerCrop"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="10dp"
             app:civ_border_width="2dp"
             app:civ_border_color="@color/black"
             />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_marginLeft="10dp">
+            android:layout_marginLeft="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -52,8 +52,8 @@
                     android:text="Hanif"
                     android:id="@+id/bus_name"
                     android:textStyle="bold"
-                    android:layout_marginStart="20dp"
-                    android:textSize="15sp"
+                    android:layout_marginStart="10dp"
+                    android:autoSizeTextType="uniform"
                     />
             </LinearLayout>
 
@@ -77,9 +77,9 @@
                     android:layout_height="wrap_content"
                     android:text="Dhaka"
                     android:id="@+id/starting_point"
-                    android:layout_marginStart="19dp"
+                    android:layout_marginStart="9dp"
                     android:textStyle="bold"
-                    android:textSize="15sp"
+                    android:autoSizeTextType="uniform"
                     />
             </LinearLayout>
 
@@ -105,8 +105,8 @@
                     android:text="Rajshahi"
                     android:id="@+id/ending_point"
                     android:textStyle="bold"
-                    android:layout_marginStart="20dp"
-                    android:textSize="15sp"
+                    android:layout_marginStart="10dp"
+                    android:autoSizeTextType="uniform"
                     />
             </LinearLayout>
 
@@ -132,9 +132,8 @@
                     android:text="0800"
                     android:id="@+id/time"
                     android:textStyle="bold"
-                    android:layout_marginStart="20dp"
-                    android:textSize="15sp"
-                    />
+                    android:layout_marginStart="9dp"
+                    android:textSize="15sp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -157,7 +156,7 @@
                     android:layout_height="wrap_content"
                     android:text="500"
                     android:id="@+id/fare"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="9dp"
                     android:textStyle="bold"
                     android:textSize="15sp"
                     />
@@ -184,7 +183,7 @@
                     android:text="Non-A/C"
                     android:id="@+id/type"
                     android:textStyle="bold"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="9dp"
                     android:textSize="15sp"
                     />
             </LinearLayout>

@@ -158,7 +158,6 @@ public class CanPayActivity extends AppCompatActivity {
                 NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(CanPayActivity.this);
                 notificationManagerCompat.notify(1, builder.build());
 
-
                 Intent intent1 = new Intent(getApplicationContext(), BookingFinish.class);
                 intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent1.putExtra("noti", message);
